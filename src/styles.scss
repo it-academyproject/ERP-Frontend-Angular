@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*Global tipography*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+/*Global font sizes & font families*/
+* {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+header, nav, button {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+body {
+    background-color: #F4F5F8;
+}
+ 
+ 
