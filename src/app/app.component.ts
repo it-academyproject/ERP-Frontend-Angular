@@ -7,12 +7,10 @@ import { Component, OnInit } from '@angular/core';
 /* TODO:
 1. Before production, review B5 JS imports you actually used.
    Comment out those not used, to reduce final production bundle.
-
 2. plus, if you're completely sure, you're not using components
    which require "popper.js", you can comment them out
    and also uninstall popper from this project.
    Check package.json to be sure '@popperjs/core' was removed successfully
-
    npm uninstall @popperjs/core
 */
 
@@ -33,16 +31,7 @@ import 'bootstrap/js/dist/tab'; // tabbable panes of local content
 //////////////////////////////////////////
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
-<<<<<<< HEAD
-import {
-  faBlind,
-  faPalette,
-  faSpinner,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons'; // we only installed the solids
-=======
 import { faUserPlus, faSignInAlt } from '@fortawesome/free-solid-svg-icons'; // we only installed the solids
->>>>>>> a996a412511a3ec644e14455d80b0ef5d450a9ec
 
 @Component({
   selector: 'app-root',
@@ -56,11 +45,7 @@ export class AppComponent implements OnInit {
     //  FONT AWESOME ICONS add plugin  //
 
     // We are only using the user-astronaut icon
-<<<<<<< HEAD
-    library.add(faBlind, faPalette, faSpinner, faUser);
-=======
     library.add(faUserPlus, faSignInAlt);
->>>>>>> a996a412511a3ec644e14455d80b0ef5d450a9ec
     // Replace any existing <i> tags with <svg> and set up a MutationObserver to
     // continue doing this as the DOM changes.
     dom.watch();
