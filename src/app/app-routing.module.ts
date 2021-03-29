@@ -26,6 +26,7 @@ import { EmployeesListComponent } from './Views/employees/employees-list/employe
 
 // Stats import
 import { StatsComponent } from "./Views/stats/stats.component";
+import { ProductsNoLoginComponent } from './Views/Product/products-no-login/products-no-login.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'recover-password', component: RecoverPasswordComponent },
   { path: 'licence', component: LicenceComponent },
   { path: 'product-list', component: ProductsListComponent },
+  { path: 'products', component: ProductsNoLoginComponent },
   { path: 'single-product/:id', component: SingleProductComponent },
   { path: 'client-list', component: ClientListComponent },
   { path: 'new-client', component: NewClientComponent },

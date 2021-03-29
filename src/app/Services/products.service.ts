@@ -12,15 +12,15 @@ export class ProductsService {
 
   url: string = 'http://217.76.158.200:8080';
   endPoint: string = '/api/products';
-  token: string; 
+  token: string;
 
 
-  constructor( 
+  constructor(
     private httpClient: HttpClient,
     private loginService: LoginService
-  ) {   
+  ) {
     //Accedemos al servicio de login para recuperar el token que se ha guardado
-    this.token = this.loginService.getBearerToken;  
+    this.token = this.loginService.getBearerToken;
   }
 
 
@@ -33,7 +33,7 @@ export class ProductsService {
 
 
   deleteProduct(id: number) {
-    const options = { 
+    const options = {
       headers: new HttpHeaders({
         Authorization: this.token
       }),
@@ -44,23 +44,23 @@ export class ProductsService {
     return this.httpClient.delete(`${this.url}${this.endPoint}`, options);
   }
 
-  
+
   getProduct(id: number) {
     const headers = new HttpHeaders({
       Authorization: this.token
     });
     return this.httpClient.get(`${this.url}${this.endPoint}/${id}`, {headers});
   }
- 
+
 
   updateProduct(id:number, name:string, stock:number, image:string, price:number) {
     let body= new updateProductDto(id, name, stock, price, image);
-    
-    const options = { 
+
+    const options = {
       headers: new HttpHeaders({
         Authorization: this.token
       })
-    }; 
+    };
     return this.httpClient.put(`${this.url}${this.endPoint}`, body, options);
   }
 
@@ -68,13 +68,17 @@ export class ProductsService {
   addProduct(name:string, stock:number, image:string,  price:number) {
     let body= new newProductDto(name, stock, price, image);
 
-    const options = { 
+    const options = {
       headers: new HttpHeaders({
         Authorization: this.token
       })
-    }; 
+    };
     return this.httpClient.post(`${this.url}${this.endPoint}`, body, options) ;
-  }  
+  }
 
+  // get all products no login to be deleted if it isn't working
+  getAllProductsNoLogin() {
+    return (this.httpClient.get(`${this.url}${this.endPoint}`));
+  }
 }
 
