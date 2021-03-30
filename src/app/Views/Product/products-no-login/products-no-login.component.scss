@@ -1,0 +1,20 @@
+@use '../products-list/products-list.component' as listProducts;
+
+// @import '../products-list/products-list.component' ;
+
+h2 {
+  @include listProducts.titleH2();
+
+}
+
+.table {
+  @include listProducts.productTable();
+}
+
+.product-img-thumb {
+  @include listProducts.imgThumb();
+}
+
+.modalMessage {
+  @include listProducts.modalPosition();
+}
