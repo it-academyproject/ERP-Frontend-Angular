@@ -1,30 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Raleway:wght@400;600&display=swap');
+// variables to be shared with products components
+$font-stack1: 'Monserrat', 'sans-serif';
+$font-stack2: 'Raleway', 'sans-serif';
 
-h2 {
-    font-family: 'Montserrat', sans-serif;
+$mainColor1: #242A32;
+$mainColor2: #fff;
+
+$bgColor1: #4E78BB;
+
+$deleteColor: #dd5d56;
+
+// ******************************mixing to be shared styles products*****************
+@mixin titleH2 {
+    font-family: $font-stack1;
     font-weight: 500;
     font-size: 18px;
-    color: #242A32;
+    color: $mainColor1;
+}
+
+@mixin buttonApp {
+  background-color: $bgColor1;
+  color: $mainColor2;
+  text-transform: uppercase;
+  font-family: $font-stack1;
+  font-weight: 500;
+}
+
+@mixin productTable {
+  font-family: $font-stack2;
+  color: $mainColor1;
+}
+
+@mixin imgThumb {
+  max-height: 60px;
+  width: auto;
+  clip-path: circle(20px at center);
+  overflow: hidden;
+}
+
+@mixin modalPosition {
+  position: absolute;
+    z-index: 150000;
+}
+
+// *****************************product-list style*********************** //
+h2 {
+  @include titleH2();
 }
 
 .appButton {
-    background-color: #4E78BB;
-    color: #fff;
-    text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+  @include buttonApp();
 }
 
 .table {
-    font-family: 'Raleway', sans-serif;
-    color: #242A32;
+  @include productTable();
 }
 
 .product-img-thumb {
-    max-height: 60px;
-    width: auto;
-    clip-path: circle(20px at center);
-    overflow: hidden;
+  @include imgThumb();
 }
 
 // .pr-td {
@@ -32,14 +65,13 @@ h2 {
 // }
 
 .deleteIcon {
-    color: #DD5D56;
+    color: $deleteColor;
 }
 
 .deleteButton {
-    background-color: #DD5D56;
+    background-color: $deleteColor;
 }
 
 .modalMessage {
-    position: absolute;
-    z-index: 150000;
+  @include modalPosition();
   }
