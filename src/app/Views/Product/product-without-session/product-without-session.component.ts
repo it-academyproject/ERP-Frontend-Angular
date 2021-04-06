@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/Services/products.service';
 @Component({
   selector: 'app-product-without-session',
@@ -8,7 +9,8 @@ import { ProductsService } from 'src/app/Services/products.service';
 export class ProductWithoutSessionComponent implements OnInit {
 
   products: any[];
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.productsService.getAllProductsNoLogin()
@@ -21,5 +23,7 @@ export class ProductWithoutSessionComponent implements OnInit {
           console.log(error);
         });
   }
+
+  
 
 }
