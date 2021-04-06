@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ProductsService } from 'src/app/Services/products.service';
 @Component({
   selector: 'app-product-without-session',
   templateUrl: './product-without-session.component.html',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductWithoutSessionComponent implements OnInit {
 
-  constructor() { }
+  products: any[];
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.productsService.getAllProductsNoLogin()
+      .subscribe(
+        (data: any) => {
+          this.products = data.products;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }
