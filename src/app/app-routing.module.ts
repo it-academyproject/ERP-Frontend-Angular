@@ -12,6 +12,7 @@ import { HomepageComponent } from './Views/Homepage/homepage.component';
 import { AdminViewComponent } from './Views/Admin-view/admin-view.component';
 import { AboutPageComponent } from './Views/about-page/about-page.component';
 import { ContactPageComponent } from './Views/contact-page/contact-page.component';
+import { ProductWithoutSessionComponent } from './Views/Product/product-without-session/product-without-session.component';
 
 // Clients import
 import { NewClientComponent } from './Views/Client/new-client/new-client.component';
@@ -26,7 +27,6 @@ import { EmployeesListComponent } from './Views/employees/employees-list/employe
 
 // Stats import
 import { StatsComponent } from "./Views/stats/stats.component";
-import { ProductsNoLoginComponent } from './Views/Product/products-no-login/products-no-login.component';
 
 
 const routes: Routes = [
@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'recover-password', component: RecoverPasswordComponent },
   { path: 'licence', component: LicenceComponent },
   { path: 'product-list', component: ProductsListComponent },
-  { path: 'products', component: ProductsNoLoginComponent },
+  { path: 'products', component: ProductWithoutSessionComponent },
   { path: 'single-product/:id', component: SingleProductComponent },
   { path: 'client-list', component: ClientListComponent },
   { path: 'new-client', component: NewClientComponent },
