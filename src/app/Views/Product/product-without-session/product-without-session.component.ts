@@ -17,13 +17,12 @@ export class ProductWithoutSessionComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.products = data.products;
-          console.log(data.products);
         },
         error => {
           console.log(error);
         });
   }
 
-  
+
 
 }

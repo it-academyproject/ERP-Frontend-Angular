@@ -3,7 +3,6 @@
     <div class="card card-block m-2" style="width: 20rem;" *ngFor="let product of products, let i = index">
       <button type="button" class="btn p-0" data-bs-toggle="modal" [attr.data-bs-target]="'#'+product.name">
         <img *ngIf="product.image > 0" [src]="product.image | noProductImage" class="card-img-top" alt="">
-        <!--  <img src= "../../../../assets/images/product1.jpg" class="card-img-top" alt=""> -->
       </button>
 
       <div class="card-body">
