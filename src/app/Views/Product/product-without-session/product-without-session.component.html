@@ -2,12 +2,44 @@
   <div class="row d-flex flex-wrap">
   <div class="card card-block m-2" style="width: 20rem;" *ngFor="let product of products, let i = index">
     <!-- <img *ngIf="product.image > 0" [src]="product.image | noProductImage" class="card-img-top" alt=""> -->
-    <img src= "../../../../assets/images/product1.jpg" class="card-img-top" alt="">
+    <button type="button" class="btn p-0" data-bs-toggle="modal" [attr.data-bs-target]="'#'+product.name">
+      <!-- <img class="product-img-thumb" *ngIf="product.image > 0" [src]="product.image | noProductImage" /> -->
+      <img src= "../../../../assets/images/product1.jpg" class="card-img-top" alt="">
+    </button>
+
     <div class="card-body">
       <h5 class="card-title">{{ product.name | translate }}</h5>
       <p class="card-text"> {{ product.price | currency:'€':true}}</p>
       <a href="#"  class="btn btn-primary">Details</a>
     </div>
+
+  <!--Modal-->
+  <div class="modal fade modalMessage" [id]="product.name" tabindex="-1" [attr.aria-labelledby]="'image of '+product.name" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{product.name}}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body d-flex justify-content-center align-items-center">
+          <img class="" *ngIf="product.image > 0" [src]="product.image | noProductImage" />
+        </div>
+
+        <div class="modal-footer">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{product.stock}}
+          </h5>
+          <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+  <!--end modal-->
+</div>
 </div>
 </div>

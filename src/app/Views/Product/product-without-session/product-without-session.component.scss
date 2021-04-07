@@ -1,0 +1,6 @@
+// one ring to rule them all
+@use '../products-list/products-list.component';
+
+.modalMessage {
+  @include modalPosition();
+}
