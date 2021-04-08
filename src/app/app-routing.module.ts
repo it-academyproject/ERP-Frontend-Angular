@@ -9,6 +9,8 @@ import { RecoverPasswordComponent } from './Views/Start/recover-password/recover
 import { SignUpComponent } from './Views/Start/sign-up/sign-up.component';
 import { ProductsListComponent } from './Views/Product/products-list/products-list.component';
 import { SingleProductComponent } from './Views/Product/single-product/single-product.component';
+import { SingleProductViewComponent } from './Views/Product/single-product-view/single-product-view.component';
+
 import { HomepageComponent } from './Views/Homepage/homepage.component';
 import { AdminViewComponent } from './Views/Admin-view/admin-view.component';
 import { AboutPageComponent } from './Views/about-page/about-page.component';
@@ -58,6 +60,7 @@ const routes: Routes = [
   { path: 'dev/product-list', component: ProductsListComponent },
   { path: 'dev/404', component: PageNotFoundComponent },
   { path: 'dev/single-product', component: SingleProductComponent },
+  { path: 'dev/single-product-view', component: SingleProductViewComponent },
   { path: 'dev/new-client', component: NewClientComponent },
   { path: 'dev/client-list', component: ClientListComponent },
   { path: 'dev/client-detail', component: ClientDetailComponent },
