@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/Services/products.service';
 
 @Component({
   selector: 'app-single-product-view',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleProductViewComponent implements OnInit {
 
-  constructor() { }
+  products: any;
+  id: number;
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.productsService.getAllProducts()
+      .subscribe(
+        (data: any) => {
+          this.products = data.products[0];
+          console.log(this.products);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }
