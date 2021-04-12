@@ -41,10 +41,12 @@ import { OrdersComponent } from './views/orders/orders.component';
 import { StatsComponent } from './views/stats/stats.component';
 import { EmployeeComponent } from './views/employees/employee/employee.component';
 import { EmployeesListComponent } from './views/employees/employees-list/employees-list.component';
+import { SingleProductViewComponent } from './Views/Product/single-product-view/single-product-view.component';
+import { NavbarSingleProductViewComponent } from './Views/Product/navbar-single-product-view/navbar-single-product-view.component';
 
 // Pipes
 import { NoProductImagePipe } from './pipes/no-product-image.pipe';
-import { SingleProductViewComponent } from './Views/Product/single-product-view/single-product-view.component';
+
 
 registerLocaleData(localeESP);
 
@@ -75,7 +77,8 @@ registerLocaleData(localeESP);
     StatsComponent,
     EmployeeComponent,
     EmployeesListComponent,
-    SingleProductViewComponent
+    SingleProductViewComponent,
+    NavbarSingleProductViewComponent
   ],
 
   imports: [
@@ -99,8 +102,7 @@ registerLocaleData(localeESP);
     }),
   ],
   exports: [
-    TranslateModule,
-    SingleProductViewComponent
+    TranslateModule
   ],
   providers: [
     {

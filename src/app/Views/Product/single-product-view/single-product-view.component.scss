@@ -1,0 +1,30 @@
+// rules css
+$color:#4E78BB;
+
+.offer {
+  text-decoration: line-through;
+  color: #333;
+  }
+#addBtn,
+#buyBtn {
+  background-color: $color;
+  border: 0;
+}
+.showObjPrice {
+  color: $color;
+}
+  #showUnits{
+    padding-top: 5px;
+  }
+  @media only screen and (max-width: 769px) {
+    h4 {
+        font-size: 1.2rem !important;
+    }
+    .fs-5{
+      font-size: 1rem!important;
+    }
+#addBtn,
+#buyBtn {
+ font-size: 0.75rem;
+}
+  }
