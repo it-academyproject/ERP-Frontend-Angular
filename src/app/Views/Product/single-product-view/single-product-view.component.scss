@@ -1,17 +1,31 @@
-// rules css
-$color:#4E78BB;
+// rules colors component css
+$colorBtns1:#4E78BB;
+$colorDanger: #DD5D56;
+$colorGraphics: #60C3D6;
+$colorWhite: #FFFFFF;
+$colorBgMain: #F4F5F8;
+$colorTipo2: #8C8C8C;
+$colorDark: #242A32;
 
-.offer {
+// delete price
+@mixin noPrice {
   text-decoration: line-through;
   color: #333;
+}
+
+.offer {
+  @include noPrice();
   }
 #addBtn,
 #buyBtn {
-  background-color: $color;
+  background-color: $colorBtns1;
   border: 0;
 }
+.quantity{
+  padding-top: 0.5rem !important;
+}
 .showObjPrice {
-  color: $color;
+  color: $colorBtns1;
 }
   #showUnits{
     padding-top: 5px;

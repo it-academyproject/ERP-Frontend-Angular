@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
-import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faCartPlus, faClipboardCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-single-product-view',
@@ -12,8 +13,12 @@ export class SingleProductViewComponent implements OnInit {
   products: any;
   id: number;
    //Icons
-   faTrashAlt = faTrashAlt;
-   faEdit = faEdit;
+  faMinus = faMinus;
+  faPlus = faPlus;
+  faCartPlus = faCartPlus;
+  faCheck = faCheckCircle;
+  faClipBoardCheck = faClipboardCheck;
+  faCheckCircle = faCheckCircle;
 
   constructor(private productsService: ProductsService) { }
 
