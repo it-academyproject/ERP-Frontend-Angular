@@ -26,7 +26,7 @@ export class SingleProductViewComponent implements OnInit {
   plusOne: HTMLElement = document.querySelector('#plusToBuy');
   minusOne: HTMLElement = document.querySelector('#minusToBuy');
   numberUnits: string | number | any;
-  number = 21;
+  myValue1: any;
   // reactive form
   getUnitsInput = new FormGroup({
     numberUnits: new FormControl('1')
@@ -52,8 +52,14 @@ export class SingleProductViewComponent implements OnInit {
   toShoppingCard(){
     // add to the basket
 this.shoppingCartService.addItem(this.products);
-// this.shoppingCartService.cartTotal;
+console.log(this.getUnitsInput.get('numberUnits').value);
   }
 
-
+addItem(num: any):any {
+  // container
+  let myValue: any = num;
+( myValue >= 0) ? myValue = parseInt(myValue) + 1 : myValue;
+console.log(myValue);
+return myValue;
+}
 }
