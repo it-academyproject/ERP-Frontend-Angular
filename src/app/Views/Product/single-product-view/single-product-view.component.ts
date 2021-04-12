@@ -24,13 +24,13 @@ export class SingleProductViewComponent implements OnInit {
   // selectors
   plusOne: HTMLElement = document.querySelector('#plusToBuy');
   minusOne: HTMLElement = document.querySelector('#minusToBuy');
-  // input numeric
-  numberUnits: number = 0;
+  numberUnits: string | number | any;
 
   // reactive form
   getUnitsInput = new FormGroup({
     numberUnits: new FormControl('1')
   });
+
 
   constructor(private productsService: ProductsService) { }
 
@@ -48,7 +48,7 @@ export class SingleProductViewComponent implements OnInit {
   }
 
   getValueUnits(){
-
+console.log(this.getUnitsInput.get('numberUnits').value);
   }
 
 
