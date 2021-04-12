@@ -1,11 +1,9 @@
-<!--Only for the style of this page-->
-<app-navbar-single-product-view></app-navbar-single-product-view>
 
 <!---New era-->
 <div class="container mt-5 mb-5" id="newEra">
   <div class="row mt-5">
     <div class="col-xl-6 col-md-12">
-      <div class="card">
+      <div class="card" *ngIf="products">
         <!-- <img class="" *ngIf="products.image > 0" [src]="products.image | noProductImage"  alt="{{ products.name }}" > -->
         <img class="singleProduct" src="https://picsum.photos/300/200/?blur=1&grayscale" alt="{{ products.name }}">
       </div>
@@ -18,7 +16,7 @@
             {{products.family}}
           </div>
           <div>
-            {{products.vat}}
+            {{ (products.vat/100) | percent:'2.1'}}
           </div>
         </div>
       </div>
@@ -106,7 +104,7 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form [formGroup]="getUnitsInput" (ngSubmit)="getValueUnits()" class="needs-validation" novalidate>
+                  <form [formGroup]="getUnitsInput" (ngSubmit)="toShoppingCard()" class="needs-validation" novalidate>
                     <div class="form-group text-center">
                       <label class="small" for="unitsToBuy">Quantity items</label>
                       <div class="input-group">

@@ -37,7 +37,7 @@ export class ShoppingCartService {
     this.cart.push(itemToAdd);
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
-    this.cartUpdated.emit(itemToAdd.id)
+    this.cartUpdated.emit(itemToAdd.id);
   }
 
   updateItem(itemToUpdate: I_ShoppingCartItem) {
@@ -54,7 +54,7 @@ export class ShoppingCartService {
     this.cart = this.cart.filter(cartItem => {
       return cartItem.id !== itemToRemove.id;
     });
-    
+
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
     this.cartUpdated.emit(itemToRemove.id);
@@ -117,7 +117,7 @@ export class ShoppingCartService {
     item.total    = item.price * item.quantity;
     this.cart.push(item);
 
-    
+
     item = new CartItem();
     item.id       = '004';
     item.name     = 'xKindle Paperwhite | Waterproof, 6"';

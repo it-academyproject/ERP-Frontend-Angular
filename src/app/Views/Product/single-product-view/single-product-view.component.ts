@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/Services/products.service';
 import { faCartPlus, faClipboardCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 
 @Component({
   selector: 'app-single-product-view',
@@ -25,14 +26,15 @@ export class SingleProductViewComponent implements OnInit {
   plusOne: HTMLElement = document.querySelector('#plusToBuy');
   minusOne: HTMLElement = document.querySelector('#minusToBuy');
   numberUnits: string | number | any;
-
+  number = 21;
   // reactive form
   getUnitsInput = new FormGroup({
     numberUnits: new FormControl('1')
   });
 
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,
+              private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.productsService.getAllProducts()
@@ -47,8 +49,10 @@ export class SingleProductViewComponent implements OnInit {
 
   }
 
-  getValueUnits(){
-console.log(this.getUnitsInput.get('numberUnits').value);
+  toShoppingCard(){
+    // add to the basket
+this.shoppingCartService.addItem(this.products);
+// this.shoppingCartService.cartTotal;
   }
 
 
