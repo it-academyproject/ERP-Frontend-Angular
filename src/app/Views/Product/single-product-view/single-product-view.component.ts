@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
-import { faCartPlus, faClipboardCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faClipboardCheck, faEuroSign, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
@@ -21,6 +21,7 @@ export class SingleProductViewComponent implements OnInit {
   faCheck = faCheckCircle;
   faClipBoardCheck = faClipboardCheck;
   faCheckCircle = faCheckCircle;
+  faEuro = faEuroSign;
 
   // selectors
   plusOne: HTMLElement = document.querySelector('#plusToBuy');
@@ -32,6 +33,9 @@ export class SingleProductViewComponent implements OnInit {
     numberUnits: new FormControl('1')
   });
 
+  getPrice = new FormGroup({
+    totalPrice: new FormControl()
+  })
 
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService) { }
@@ -54,12 +58,12 @@ export class SingleProductViewComponent implements OnInit {
 this.shoppingCartService.addItem(this.products);
 console.log(this.getUnitsInput.get('numberUnits').value);
   }
-
-addItem(num: any):any {
-  // container
-  let myValue: any = num;
-( myValue >= 0) ? myValue = parseInt(myValue) + 1 : myValue;
-console.log(myValue);
-return myValue;
+addingPrice() {
+  let units = this.getUnitsInput.get('numberUnits').value;
+  let price = this.getPrice.get('totalPrice').value;
+console.log(units);
+console.log(price);
+  this.products.price = units*price;
+  console.log(this.products.price);
 }
 }

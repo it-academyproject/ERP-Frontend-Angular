@@ -107,20 +107,11 @@
                     <div class="form-group text-center">
                       <label class="small" for="unitsToBuy">Quantity items</label>
                       <div class="input-group">
-                        <span class="input-group-btn">
-                          <button type="button" class="quantity quantity-left-minus btn btn-number" id="minusToBuy"
-                            data-type="minus" data-field="">
-                            <fa-icon [icon]="faMinus" size="md" role="button"></fa-icon>
-                          </button>
-                        </span>
-                        <input formControlName="numberUnits" type="text" id="quantity" name="quantity"
-                          class="form-control input-number form-control-sm rounded"  min="1" max="100">
-                        <span class="input-group-btn">
-                          <button type="button" class="quantity quantity-right-plus btn btn-number "  (click)="addItem(myValue1)"
-                            id="plusToBuy" data-type="plus" data-field="">
-                            <fa-icon [icon]="faPlus" size="md"></fa-icon>
-                          </button>
-                        </span>
+
+                        <input formControlName="numberUnits" type="number" id="quantity" name="quantity"
+                          class="form-control input-number form-control-sm rounded" min="1"
+                          max="{{ products.wholesale_quantity }}">
+
                       </div>
                     </div>
                     <div class="media-body d-flex justify-content-center">
@@ -150,12 +141,18 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form class="needs-validation" novalidate>
-                    <div class="form-group">
-                      <input class="form-control form-control-sm mt-2" type="text" placeholder="Total to pay"
-                        aria-label="showPrice" id="showPrice" readonly>
+                  <form class="needs-validation" [formGroup]="getPrice" (ngSubmit)="toShoppingCard()" novalidate>
+                    <div class="form-group d-flex">
+                      <input class="form-control form-control-sm mt-2" formControlName="totalPrice"
+                        value="{{ products.price |currency }}" [(ngModel)]="products.price"
+                        (ngModelChange)="addingPrice()" placeholder="Total to pay" aria-label="showPrice" id="showEuro"
+                        type="text" readonly>
+                      <span class="input-group-btn mt-2 col-2">
+                        <fa-icon [icon]="faEuro" size="md"></fa-icon>
+
+                      </span>
                     </div>
-                    <div class="media-body d-flex justify-content-center pt-1">
+                    <div class="media-body d-flex justify-content-center ">
                       <button class="btn btn-primary text-capitalize " id="buyBtn" type="submit">buy now<fa-icon
                           class="ml-2" [icon]="faCheckCircle" size="lg"></fa-icon></button>
                     </div>
