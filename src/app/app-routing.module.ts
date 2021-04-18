@@ -43,6 +43,9 @@ const routes: Routes = [
   { path: 'licence', component: LicenceComponent },
   { path: 'product-list', component: ProductsListComponent },
   { path: 'single-product/:id', component: SingleProductComponent },
+  /********************  Model parent-child **************************/
+  // { path: 'single-product-view', component: SingleProductViewComponent },
+  // { path: 'F52', component: F52Component },
   { path: 'client-list', component: ClientListComponent, canActivate: [AuthGuard] },
   { path: 'new-client', component: NewClientComponent },
   { path: 'client-detail/:id', component: ClientDetailComponent },
@@ -74,3 +77,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule { }
+
+// export const ARRAYCOMPONENTS: any[] = [F52Component, SingleProductViewComponent];

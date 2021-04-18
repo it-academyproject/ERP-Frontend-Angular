@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; // to place ARRAYCOMPONENTS
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Interpolation } from '@angular/compiler'; // FIXME: CAN WE REMOVE IT?
@@ -78,7 +78,8 @@ registerLocaleData(localeESP);
     EmployeeComponent,
     EmployeesListComponent,
     SingleProductViewComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+   // ARRAYCOMPONENTS
   ],
 
   imports: [
