@@ -32,12 +32,15 @@ export class ShoppingCartService {
     return total;
   }
 
-  addItem(itemToAdd: I_ShoppingCartItem) {
+  addItem(itemToAdd: I_ShoppingCartItem, num?: number) {
     this.cart = this.cartItems;
+   (num) ? itemToAdd.quantity = num : itemToAdd;
     this.cart.push(itemToAdd);
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
     this.cartUpdated.emit(itemToAdd.id);
+    console.log(this.cartUpdated.emit(itemToAdd.id));
+
   }
 
   updateItem(itemToUpdate: I_ShoppingCartItem) {
@@ -129,3 +132,4 @@ export class ShoppingCartService {
     this.cart.push(item);
   }
 }
+

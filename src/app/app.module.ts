@@ -42,7 +42,6 @@ import { StatsComponent } from './views/stats/stats.component';
 import { EmployeeComponent } from './views/employees/employee/employee.component';
 import { EmployeesListComponent } from './views/employees/employees-list/employees-list.component';
 import { SingleProductViewComponent } from './Views/Product/single-product-view/single-product-view.component';
-import { NavbarSingleProductViewComponent } from './Views/Product/navbar-single-product-view/navbar-single-product-view.component';
 import { ShoppingCartComponent } from './Components/header/shopping-cart/shopping-cart.component';
 
 // Pipes
@@ -79,7 +78,6 @@ registerLocaleData(localeESP);
     EmployeeComponent,
     EmployeesListComponent,
     SingleProductViewComponent,
-    NavbarSingleProductViewComponent,
     ShoppingCartComponent
   ],
 

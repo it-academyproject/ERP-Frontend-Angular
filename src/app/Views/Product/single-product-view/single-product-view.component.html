@@ -103,15 +103,15 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form [formGroup]="getUnitsInput" (ngSubmit)="toShoppingCard()" class="needs-validation" novalidate>
+                  <form [formGroup]="productForm" (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" class="needs-validation" novalidate>
                     <div class="form-group text-center">
                       <label class="small" for="unitsToBuy">Quantity items</label>
                       <div class="input-group">
-
-                        <input formControlName="numberUnits" type="number" id="quantity" name="quantity"
-                          class="form-control input-number form-control-sm rounded" min="1"
-                          max="{{ products.wholesale_quantity }}">
-
+                        <input formControlName="quantity"
+                        class="form-control input-number form-control-sm rounded"
+                        type="number" id="quantity" name="quantity"
+                         min="1" max="{{ products.wholesale_quantity }}"
+                         placeholder="quantity" (ngModel)="products.price" (ngModelChange)="addingPrice(products.price)">
                       </div>
                     </div>
                     <div class="media-body d-flex justify-content-center">
@@ -141,11 +141,12 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form class="needs-validation" [formGroup]="getPrice" (ngSubmit)="toShoppingCard()" novalidate>
+                  <form class="needs-validation" [formGroup]="productForm" (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" novalidate>
                     <div class="form-group d-flex">
-                      <input class="form-control form-control-sm mt-2" formControlName="totalPrice"
-                        value="{{ products.price |currency }}" [(ngModel)]="products.price"
-                        (ngModelChange)="addingPrice()" placeholder="Total to pay" aria-label="showPrice" id="showEuro"
+                      <input
+                      class="form-control form-control-sm mt-2" formControlName="totalPrice"
+                        value="{{ products.price |currency:'€':true }}" [(ngModel)]="myValue"
+                         placeholder="Total to pay" aria-label="showPrice" id="showEuro"
                         type="text" readonly>
                       <span class="input-group-btn mt-2 col-2">
                         <fa-icon [icon]="faEuro" size="md"></fa-icon>
