@@ -32,14 +32,13 @@ export class SingleProductViewComponent implements OnInit {
   numberUnits: string | number | any;
   myValue: any | number;
 
-        // reactive form with form Control
+// declaration reactive form with formBuilder
+productForm: FormGroup;
+// reactive form with form Control
           /* productForm = new FormGroup({
             quantity: new FormControl('1'),
             totalPrice: new FormControl()
           }); */
-
-// declaration reactive form with formBuilder
-productForm: FormGroup;
 
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
@@ -47,11 +46,12 @@ productForm: FormGroup;
 // reactive form group Builder
 this.productForm = this.formBuilder.group({
   quantity: ['1', Validators.pattern('^[0-9]+$')],
-  totalPrice: ['3', Validators.pattern('^[0-9]+$')]
+  totalPrice: ['', Validators.pattern('^[0-9]+$')]
 })
                }
 
   ngOnInit(): void {
+    // fake way to obtain one product
     this.productsService.getAllProducts()
       .subscribe(
         (data: any) => {
@@ -62,6 +62,10 @@ this.productForm = this.formBuilder.group({
           console.log(error);
         });
 
+    /*
+     * product should come from F52
+     * <a routerLink="product.id"></a>
+     */
 
 
   }

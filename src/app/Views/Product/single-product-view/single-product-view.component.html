@@ -28,8 +28,8 @@
             <div class="media align-items-stretch">
               <div class="align-self-center">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="checkPrices" id="mainPrice" checked>
                   <label class="form-check-label font-weight-bold text-uppercase mr-5" for="mainPrice">
+                    <input class="form-check-input" type="radio" name="checkPrices" id="mainPrice" checked>
                     price
                   </label>
                 </div>
@@ -57,10 +57,9 @@
             <div class="media align-items-stretch">
               <div class="align-self-center">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="checkPrices" id="wholeSales">
                   <label class="form-check-label fw-bold text-uppercase" for="wholeSales">
+                    <input class="form-check-input" type="radio" name="checkPrices" id="wholeSales">
                     wholesales &#42;
-
                   </label>
                   <div>
                     <small><span class="small">&#42; units product considered wholesales</span></small>
@@ -103,15 +102,16 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form [formGroup]="productForm" (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" class="needs-validation" novalidate>
+                  <form [formGroup]="productForm"
+                    (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" class="needs-validation"
+                    novalidate>
                     <div class="form-group text-center">
                       <label class="small" for="unitsToBuy">Quantity items</label>
                       <div class="input-group">
-                        <input formControlName="quantity"
-                        class="form-control input-number form-control-sm rounded"
-                        type="number" id="quantity" name="quantity"
-                         min="1" max="{{ products.wholesale_quantity }}"
-                         placeholder="quantity" (ngModel)="products.price" (ngModelChange)="addingPrice(products.price)">
+                        <input formControlName="quantity" class="form-control input-number form-control-sm rounded"
+                          type="number" id="quantity" name="quantity" min="1" max="{{ products.wholesale_quantity }}"
+                          placeholder="quantity" (ngModel)="products.price"
+                          (ngModelChange)="addingPrice(products.price)">
                       </div>
                     </div>
                     <div class="media-body d-flex justify-content-center">
@@ -141,13 +141,12 @@
                   <!--End media body second block-->
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
-                  <form class="needs-validation" [formGroup]="productForm" (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" novalidate>
+                  <form class="needs-validation" [formGroup]="productForm"
+                    (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" novalidate>
                     <div class="form-group d-flex">
-                      <input
-                      class="form-control form-control-sm mt-2" formControlName="totalPrice"
-                        value="{{ products.price |currency:'€':true }}" [(ngModel)]="myValue"
-                         placeholder="Total to pay" aria-label="showPrice" id="showEuro"
-                        type="text" readonly>
+                      <input class="form-control form-control-sm mt-2" formControlName="totalPrice"
+                        value="{{ products.price |currency:'€':true }}" [(ngModel)]="myValue" placeholder="Total to pay"
+                        aria-label="showPrice" id="showEuro" type="text" readonly>
                       <span class="input-group-btn mt-2 col-2">
                         <fa-icon [icon]="faEuro" size="md"></fa-icon>
 

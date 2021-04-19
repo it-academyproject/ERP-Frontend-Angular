@@ -30,13 +30,10 @@ export class ProductsService {
     });
     return this.httpClient.get( `${this.url}${this.endPoint}`, {headers} );
   }
-  
+
 // fake a productsAll & single product no login
 getAllProducts(){
   return this.httpClient.get( `${this.url}${this.endPoint}`);
-}
-getOneProduct(id: number) {
-  return this.httpClient.get(`${this.url}${this.endPoint}/${id}`);
 }
 // end fake calls
 

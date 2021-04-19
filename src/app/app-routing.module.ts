@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'product-list', component: ProductsListComponent },
   { path: 'single-product/:id', component: SingleProductComponent },
   /********************  Model parent-child **************************/
-  // { path: 'single-product-view', component: SingleProductViewComponent },
+  { path: 'product/:id', component: SingleProductViewComponent },
   // { path: 'F52', component: F52Component },
   { path: 'client-list', component: ClientListComponent, canActivate: [AuthGuard] },
   { path: 'new-client', component: NewClientComponent },
