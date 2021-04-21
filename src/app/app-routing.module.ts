@@ -13,7 +13,7 @@ import { HomepageComponent } from './Views/Homepage/homepage.component';
 import { AdminViewComponent } from './Views/Admin-view/admin-view.component';
 import { AboutPageComponent } from './Views/about-page/about-page.component';
 import { ContactPageComponent } from './Views/contact-page/contact-page.component';
-import { ProductsWithoutSessionComponent } from './Views/Product/products-without-session/products-without-session.component';
+import { ProductsComponent } from './Views/Product/products/products.component';
 
 // Clients import
 import { NewClientComponent } from './Views/Client/new-client/new-client.component';
@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'employees-list', component: EmployeesListComponent },
   { path: 'stats', component: StatsComponent },
-  { path: 'products-without-session', component: ProductsWithoutSessionComponent },
+  { path: 'products-without-session', component: ProductsComponent },
   // developers views
   { path: 'dev/admin', component: AdminViewComponent },
   { path: 'dev/sign-up', component: SignUpComponent },
