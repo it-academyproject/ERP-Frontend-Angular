@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'employees-list', component: EmployeesListComponent },
   { path: 'stats', component: StatsComponent },
-  { path: 'products-without-session', component: ProductsComponent },
+  { path: 'products', component: ProductsComponent },
   // developers views
   { path: 'dev/admin', component: AdminViewComponent },
   { path: 'dev/sign-up', component: SignUpComponent },
