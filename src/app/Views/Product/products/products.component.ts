@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
 import {  } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { I_ShoppingCartItem } from '../../../Models/shoppingCartItem';
 import { ShoppingCartService } from '../../../Services/shopping-cart.service';
+import { I_ShoppingCartItem } from '../../../Models/shoppingCartItem';
+
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -12,7 +14,7 @@ import { delay } from 'rxjs/operators';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
-})
+})    
 export class ProductsComponent implements OnInit {
 
   products: any[];
@@ -20,28 +22,27 @@ export class ProductsComponent implements OnInit {
   public page: number;
 
   public cartItems: I_ShoppingCartItem[] = [];
-  carrito: I_ShoppingCartItem;
+
+  public itemAdd: I_ShoppingCartItem;
+
+  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+
+  sesionCartName = 'erpCart';
   public cartTotal: number = 0;
-  desc: string;
-  quantity: number;
-  total: number;
+  desc: string = "descripcion";
+  quantity: number = 0;
+  total: number = 1;
   public cart = [];
 
   public cartSubscription: Subscription;
 
-  itemAdd;
-
-  productsCart: number = 0;
-  //cart = Array();
-  showCart;
-  productWholesaleCard: number;
-
   constructor(
-    
     private productsService: ProductsService,
     private router: Router,
     public shoppingCartService: ShoppingCartService,
-    ) {}
+    ) {
+      this.cart = this.cartItems;
+    }
 
   ngOnInit(): void {
     this.productsService.getProducts()
@@ -70,34 +71,28 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/detail-product', id]);
   }
 
-  addProductCart(carrito: I_ShoppingCartItem) {
+  addProductCart(product: any) {
 
-    this.cart = this.cartItems;
-    this.cart.push(carrito);
-    //this.saveSessionStorage(this.cart);
-    // // Emit cart update observable
-    //this.cartUpdated.emit(carrito.id)
+    let item: I_ShoppingCartItem = {
+      id: product.id,
+      name: product.name,
+      desc: "descripción",
+      image: product.image,
+      price: product.price,
+      quantity: 0,
+      total: 1
+    }
 
+    this.shoppingCartService.addItem(item);
 
-    // this.cart.push(carrito);
-    // this.productsCart++;
-    // console.log(this.productsCart);
-    // console.log(this.cart);
-    // let i: number;
-    // for(i = 0; i < this.cart.length; i++) {
-    //   this.itemAdd = this.cart[i];
-    //   console.log(this.itemAdd);
-    //   console.log(this.itemAdd.name);
-    //   console.log(this.itemAdd.price);
-    //   console.log(this.productsCart);
-    // }
-    // this.showCart = (<HTMLInputElement>document.getElementById('showProductsCard')).innerHTML += `Producto añadido: ${this.itemAdd.name} ${this.itemAdd.price} ${this.itemAdd.family} Cantidad: ${this.productsCart}`
-  }
+    console.log(item);
+    console.log(this.shoppingCartService);
 
-  addProductWholesaleCart(product) {
-    this.showCart = (<HTMLInputElement>document.getElementById('showProductsCard'));
-    this.productWholesaleCard = product.wholesale_price;
-    this.cart.push(product);
+    this.shoppingCartService.getSessionCart();
+    this.shoppingCartService.clearSessionStorage();
+    this.shoppingCartService.updateItem(item);
+    console.log(this.shoppingCartService);
+
   }
 
 }
