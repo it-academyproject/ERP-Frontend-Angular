@@ -9,6 +9,7 @@ import { RecoverPasswordComponent } from './Views/Start/recover-password/recover
 import { SignUpComponent } from './Views/Start/sign-up/sign-up.component';
 import { ProductsListComponent } from './Views/Product/products-list/products-list.component';
 import { SingleProductComponent } from './Views/Product/single-product/single-product.component';
+
 import { HomepageComponent } from './Views/Homepage/homepage.component';
 import { AdminViewComponent } from './Views/Admin-view/admin-view.component';
 import { AboutPageComponent } from './Views/about-page/about-page.component';
@@ -29,6 +30,7 @@ import { EmployeeComponent } from './Views/employees/employee/employee.component
 
 // Stats import
 import { StatsComponent } from "./Views/stats/stats.component";
+import { ViewProductNoLoginComponent } from './Views/Product/view-product-no-login/view-product-no-login.component';
 
 
 
@@ -52,7 +54,9 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'employees-list', component: EmployeesListComponent },
   { path: 'stats', component: StatsComponent },
+   /********************  Model parent-child **************************/
   { path: 'products-without-session', component: ProductsWithoutSessionComponent },
+  { path: 'products-without-session/:id', component: ViewProductNoLoginComponent },
   // developers views
   { path: 'dev/admin', component: AdminViewComponent },
   { path: 'dev/sign-up', component: SignUpComponent },
@@ -65,6 +69,8 @@ const routes: Routes = [
   { path: 'dev/new-client', component: NewClientComponent },
   { path: 'dev/client-list', component: ClientListComponent },
   { path: 'dev/client-detail', component: ClientDetailComponent },
+  { path: 'dev/view-product-no-login', component: ViewProductNoLoginComponent },
+
   // Path ** MUST be always the last route
   { path: '**', redirectTo: '404', pathMatch: 'full' },
 ];
@@ -75,3 +81,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule { }
+
+// export const ARRAYCOMPONENTS: any[] = [F52Component, SingleProductViewComponent];
