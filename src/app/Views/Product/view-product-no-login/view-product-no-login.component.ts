@@ -15,6 +15,7 @@ import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 })
 export class ViewProductNoLoginComponent implements OnInit {
   products: any;
+  product: any;
   id: number;
   // cart from service
   cart: ShoppingCartService [] = [];
@@ -54,8 +55,9 @@ productForm: FormGroup;
     this.productsService.getProducts()
       .subscribe(
         (data: any) => {
-          this.products = data.products[0];
+          this.products = data.products;
           console.log(this.products);
+          this.products = data.products[0];
         },
         error => {
           console.log(error);
@@ -92,5 +94,6 @@ addingPrice(num: number) {
   let units = this.productForm.get('quantity').value;
   this.myValue = units*num;
 }
+
 
 }

@@ -23,7 +23,7 @@ export class ProductsService {
     this.token = this.loginService.getBearerToken;
   }
 
-  getProducts() {
+  getProducts(id?: number) {
     const headers = new HttpHeaders({
       //Authorization: this.token //removed to showing products without loggin
     });
@@ -70,4 +70,3 @@ export class ProductsService {
     return this.httpClient.post(`${this.url}${this.endPoint}`, body, options) ;
   }
 }
-

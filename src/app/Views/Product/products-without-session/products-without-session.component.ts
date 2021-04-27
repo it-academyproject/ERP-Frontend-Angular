@@ -38,8 +38,16 @@ export class ProductsWithoutSessionComponent implements OnInit {
 
   goDetailProduct(id: number) {
     console.log('detail works');
-    this.router.navigate(['/products-without-session/:id', id]);
-  }
+    console.log(id);
+    this.router.navigate(['/products-without-session', id]);
+  console.log(this.productsService.getProducts(id)
+  .subscribe(
+    (data: any) => {
+        console.log(id);
+      this.products = data.products[id -1];
+      console.log(this.products);
+    }));
+  };
 
   addProductCart(product) {
     this.showCart = (<HTMLInputElement>document.getElementById('showProductsCard'));
