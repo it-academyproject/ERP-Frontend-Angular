@@ -70,8 +70,8 @@
                     wholesales &#42;
                   </label>
                   <div>
-                    <small><span class="small">&#42; units product considered wholesales</span></small>
-                    <p><span class="" id="shohwStock">{{products.wholesale_quantity}}</span></p>
+                    <!-- <small><span class="small">&#42; units product considered wholesales</span></small> -->
+                    <span class="" id="shohwStock">price from {{products.wholesale_quantity}} units</span>
                   </div>
 
 
@@ -123,7 +123,7 @@
                       </div>
                     </div>
                     <div class="media-body d-flex justify-content-center">
-                      <button class="btn btn-primary text-capitalize" id="addBtn" type="submit">add to basket<fa-icon
+                      <button class="btn btn-primary text-capitalize" id="addBtn" type="submit">add to cart<fa-icon
                           class="ml-1" [icon]="faCartPlus" size="md"></fa-icon></button>
                     </div>
                     <!--End media body second block-->

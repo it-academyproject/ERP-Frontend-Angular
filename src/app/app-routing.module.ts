@@ -69,8 +69,6 @@ const routes: Routes = [
   { path: 'dev/new-client', component: NewClientComponent },
   { path: 'dev/client-list', component: ClientListComponent },
   { path: 'dev/client-detail', component: ClientDetailComponent },
-  { path: 'dev/view-product-no-login', component: ViewProductNoLoginComponent },
-
   // Path ** MUST be always the last route
   { path: '**', redirectTo: '404', pathMatch: 'full' },
 ];
