@@ -39,13 +39,6 @@ export class ProductsWithoutSessionComponent implements OnInit {
   goDetailProduct(id: number) {
     console.log('detail works');
     this.router.navigate(['/products-without-session', id]);
-  console.log(this.productsService.getProducts(id)
-  .subscribe(
-    (data: any) => {
-      this.products = data.products;
-      this.products = data.products[id -1];
-      console.log(this.products);
-    }));
   };
 
   addProductCart(product) {
