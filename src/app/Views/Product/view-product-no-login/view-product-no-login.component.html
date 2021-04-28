@@ -111,7 +111,7 @@
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
                   <form [formGroup]="productForm"
-                    (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" class="needs-validation"
+                    (ngSubmit)="toShoppingCard(products, productForm.get('quantity').value)" class="needs-validation"
                     novalidate>
                     <div class="form-group text-center">
                       <label class="small" for="unitsToBuy">Quantity items</label>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="media-body d-flex justify-content-center mt-1">
                   <form class="needs-validation" [formGroup]="productForm"
-                    (ngSubmit)="toShoppingCard(products.id, productForm.get('quantity').value)" novalidate>
+                    (click)="goCheckOut(products, productForm.get('quantity').value)" novalidate>
                     <div class="form-group d-flex">
                       <input class="form-control form-control-sm mt-2" formControlName="totalPrice"
                         value="{{ products.price |currency:'€':true }}" [(ngModel)]="myValue" placeholder="Total to pay"
@@ -161,7 +161,10 @@
                       </span>
                     </div>
                     <div class="media-body d-flex justify-content-center ">
-                      <button class="btn btn-primary text-capitalize " id="buyBtn" type="submit">buy now<fa-icon
+                      <button class="btn btn-primary text-capitalize "
+                      id="buyBtn"
+                      type="submit"
+                      >buy now<fa-icon
                           class="ml-2" [icon]="faCheckCircle" size="lg"></fa-icon></button>
                     </div>
                     <!--End media body second block-->

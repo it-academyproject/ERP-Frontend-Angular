@@ -1,6 +1,6 @@
 
 
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angular/core';
 import { faCartPlus, faClipboardCheck, faEuroSign, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { FormControl, FormGroup, FormBuilder, Validators  } from '@angular/forms';
@@ -10,8 +10,10 @@ import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 // single product
 import { newProductDto } from "src/app/Models/DTOs/newProductDto";
 // what page we are at
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+// cartT
+import { I_ShoppingCartItem } from 'src/app/Models/shoppingCartItem';
 
 @Component({
   selector: 'app-view-product-no-login',
@@ -19,14 +21,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./view-product-no-login.component.scss','product-view-no-login.scss']
 })
 export class ViewProductNoLoginComponent implements OnInit {
-  products: any;
+  @Input() products: any
+  // @Output() cartUpdated = new EventEmitter();
+  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+
   product: any;
   productsSub$: Subscription;
   id: number;
   myNum: number = 1;
   // cart from service
   cart: ShoppingCartService [] = [];
-  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+  // public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
    //Icons
   faMinus = faMinus;
   faPlus = faPlus;
@@ -42,6 +47,9 @@ export class ViewProductNoLoginComponent implements OnInit {
   numberUnits: string | number | any;
   myValue: any | number;
 
+// cartT
+public cartTotal: number = 0;
+public cartItems: I_ShoppingCartItem[] = [];
 // declaration reactive form with formBuilder
 productForm: FormGroup;
 // reactive form with form Control
@@ -54,7 +62,8 @@ productForm: FormGroup;
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
               private formBuilder: FormBuilder,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
 
      this.createForm();
                }
@@ -63,9 +72,6 @@ productForm: FormGroup;
 
 this.pickUpProduct();
 
-// this.productsSub$ = this.productsService.getProducts(this.id)
-// .subscribe(product => {
-//   this.product = product;
 }
     /*
      * product should come from F52
@@ -96,15 +102,13 @@ this.productForm = this.formBuilder.group({
 })
   }
 
-  toShoppingCard(id: number, quantity: number){
-    // add to the basket
-id = this.products.id;
+toShoppingCard(product: I_ShoppingCartItem, quantity: number){
+
 let units = this.productForm.get('quantity').value;
-quantity = units;
-this.shoppingCartService.addItem(this.products, quantity);
+quantity = parseInt(units);
+this.shoppingCartService.addItem(product, quantity);
 console.log(this.productForm);
-let total: any = this.shoppingCartService.cartItems.length;
-alert(total);
+console.log(this.cartTotal);
   }
 
 addingPrice(num: number): number {
@@ -119,8 +123,14 @@ controlStocks(num:number): number{
   console.log(this.products.stock);
   return this.products.stock;
 }
-// ngOnDestroy(): void {
-//    this.productsSub$.unsubscribe();
-//  }
+goCheckOut(product: I_ShoppingCartItem, quantity: number) {
+  console.log('checkout  works');
+  this.toShoppingCard(product, quantity);
+  this.router.navigate(['/checkout']);
+};
+
+ /* ngOnDestroy(): void {
+    this.productsSub$.unsubscribe();
+  } */
 
 }

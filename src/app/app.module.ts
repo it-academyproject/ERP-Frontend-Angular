@@ -56,7 +56,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 // popUps UI/UX answers
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ViewProductNoLoginComponent } from './Views/Product/view-product-no-login/view-product-no-login.component';
 
 registerLocaleData(localeESP);
 

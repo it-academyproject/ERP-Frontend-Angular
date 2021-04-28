@@ -37,7 +37,6 @@ export class ProductsWithoutSessionComponent implements OnInit {
   }
 
   goDetailProduct(id: number) {
-    console.log('detail works');
     this.router.navigate(['/products-without-session', id]);
   };
 
