@@ -80,6 +80,7 @@ pickUpProduct(){
       (data: any) => {
         this.products = data.products[id - 1];
         console.log(this.products);
+        this.showOfferPrice(this.products.price);
       },
       error => {
         console.log(error);
@@ -107,11 +108,20 @@ addingPrice(num: number): number {
 return  this.myValue = units*num;
 }
 
+showOfferPrice(num: number): number{
+  // add to the normal price a random margin
+  (num > 100) ? num = 100 : num;
+let sugarPrice: number = num + Math.floor(Math.random() * ((num - 5) + 1) + 5)* 0.2;
+return sugarPrice;
+}
+
+
 controlStocks(num:number): number{
   console.log(num);
   console.log(this.products.stock);
-  return this.products.stock;
+   return this.products.stock;
 }
+
 goCheckOut(product: I_ShoppingCartItem, quantity: number) {
   console.log('checkout  works');
   this.toShoppingCard(product, quantity);

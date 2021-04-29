@@ -44,7 +44,7 @@
                 <!--end form check-->
               </div>
               <div class="media-body d-flex justify-content-end">
-                <h4 class="offer text-dark">1350&euro;</h4>
+                <h4 class="offer text-dark">{{ showOfferPrice(products.wholesale_price) | currency:"€":true }}</h4>
               </div>
               <!--End media body1-->
               <div class="media-body d-flex justify-content-end">
@@ -79,7 +79,7 @@
                 </div><!-- End form-check2-->
               </div>
               <div class="media-body d-flex justify-content-end">
-                <h4 class="offer text-dark">1350€</h4>
+                <h4 class="offer text-dark">{{ showOfferPrice(products.wholesale_price) | currency:"€":true }}</h4>
               </div>
               <!--End media body1.2-->
               <div class="media-body d-flex justify-content-end ml-1">
@@ -192,3 +192,5 @@
   </div>
   <!----End row-->
 </div>
+
+<!-- Nuevo layout-->
