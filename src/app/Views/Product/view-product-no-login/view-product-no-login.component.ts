@@ -50,6 +50,7 @@ export class ViewProductNoLoginComponent implements OnInit {
 // cartT
 public cartTotal: number = 0;
 public cartItems: I_ShoppingCartItem[] = [];
+
 // declaration reactive form with formBuilder
 productForm: FormGroup;
 // reactive form with form Control
@@ -58,17 +59,15 @@ productForm: FormGroup;
             totalPrice: new FormControl()
           }); */
 
-
-  constructor(private productsService: ProductsService,
+constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router) {
-
      this.createForm();
                }
 
-  ngOnInit(): void {
+ngOnInit(): void {
 
 this.pickUpProduct();
 
@@ -87,28 +86,25 @@ pickUpProduct(){
       });
 }
 
-
-
-  createForm(){
+createForm(){
     // reactive form group Builder
 this.productForm = this.formBuilder.group({
   quantity: ['1', Validators.pattern('^[0-9]+$')],
   totalPrice: ['', Validators.pattern('^[0-9]+$')]
 })
-  }
+}
 
 toShoppingCard(product: I_ShoppingCartItem, quantity?: number){
 let units = this.productForm.get('quantity').value;
 quantity = parseInt(units);
 this.shoppingCartService.addItem(product, quantity);
 console.log(product.quantity);
-  }
+}
 
 addingPrice(num: number): number {
   let units = this.productForm.get('quantity').value;
     this.controlStocks(units);
 return  this.myValue = units*num;
-
 }
 
 controlStocks(num:number): number{
@@ -122,8 +118,8 @@ goCheckOut(product: I_ShoppingCartItem, quantity: number) {
   this.router.navigate(['/checkout']);
 };
 
- /* ngOnDestroy(): void {
-    this.productsSub$.unsubscribe();
-  } */
+// ngOnDestroy(): void {
+//     this.productsSub$.unsubscribe();
+// }
 
 }

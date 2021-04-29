@@ -101,10 +101,10 @@
               <div class="card-body cleartfix">
                 <div class="media align-items-stretch d-flex justify-content-between">
                   <div class="media-body col-md-auto pr-0">
-                    <div class="text-dark text-capitalize fs-5">stock in store</div>
+                    <div class="text-dark text-capitalize fs-5 fw-bold">units in store</div>
                   </div>
                   <!--End media body second block-->
-                  <div class="media-body d-flex justify-content-end col-3">
+                  <div class="media-body d-flex  col-3">
                     <div class="text-dark fw-bold" id="showUnits">{{ products.stock }}</div>
                   </div>
                   <!--End media body second block-->
@@ -113,11 +113,11 @@
                   <form [formGroup]="productForm"
                     (ngSubmit)="toShoppingCard(products, productForm.get('quantity').value)" class="needs-validation"
                     novalidate>
-                    <div class="form-group text-center">
-                      <label class="small" for="unitsToBuy">Quantity items</label>
+                    <div class="form-group d-flex align-items-center text-center  mt-1">
+                      <label class="text-uppercase fw-bold mr-1 mt-1" for="unitsToBuy">Qty</label>
                       <div class="input-group">
                         <input formControlName="quantity" class="form-control input-number form-control-sm rounded"
-                          type="number" id="quantity" name="quantity" min="1" max="{{ products.wholesale_quantity }}"
+                          type="number" id="quantity" name="quantity" min="0" max="{{ products.wholesale_quantity }}"
                           placeholder="quantity" (ngModel)="products.price"
                           (ngModelChange)="addingPrice(products.price)">
                       </div>
@@ -151,12 +151,11 @@
                   </div>
                   <!--End media body second block-->
                 </div>
-                <div class="media-body d-flex justify-content-center mt-1">
-                  <form class="needs-validation" [formGroup]="productForm"
-                    (click)="goCheckOut(products, productForm.get('quantity').value)" novalidate>
-                    <div class="form-group d-flex">
-                      <input class="form-control form-control-sm mt-2" formControlName="totalPrice"
-                        value="{{ products.price |currency:'€':true }}" [(ngModel)]="myValue" placeholder="Total to pay"
+                <div class="media-body d-flex justify-content-center">
+                  <form class="needs-validation" [formGroup]="productForm" novalidate>
+                    <div class="form-group d-flex pt-1">
+                      <input class="form-control form-control-sm  mt-2" formControlName="totalPrice"
+                        value="{{ products.price | currency:'€':true }}" [(ngModel)]="myValue" placeholder="Total to pay"
                         aria-label="showPrice" id="showEuro" type="text" readonly>
                       <span class="input-group-btn mt-2 col-2">
                         <fa-icon [icon]="faEuro" size="md"></fa-icon>
@@ -167,6 +166,7 @@
                       <button class="btn btn-primary text-capitalize "
                       id="buyBtn"
                       type="submit"
+                      (click)="goCheckOut(products, productForm.get('quantity').value)"
                       >buy now<fa-icon
                           class="ml-2" [icon]="faCheckCircle" size="lg"></fa-icon></button>
                     </div>
