@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
-import {  } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ShoppingCartService } from '../../../Services/shopping-cart.service';
 import { I_ShoppingCartItem } from '../../../Models/shoppingCartItem';
-
-import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -16,33 +12,18 @@ import { delay } from 'rxjs/operators';
   styleUrls: ['./products.component.scss']
 })    
 export class ProductsComponent implements OnInit {
-
+  
   products: any[];
 
   public page: number;
 
   public cartItems: I_ShoppingCartItem[] = [];
 
-  public itemAdd: I_ShoppingCartItem;
-
-  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
-
-  sesionCartName = 'erpCart';
-  public cartTotal: number = 0;
-  desc: string = "descripcion";
-  quantity: number = 0;
-  total: number = 1;
-  public cart = [];
-
-  public cartSubscription: Subscription;
-
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    public shoppingCartService: ShoppingCartService,
-    ) {
-      this.cart = this.cartItems;
-    }
+    public shoppingCartService: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
     this.productsService.getProducts()
@@ -53,25 +34,15 @@ export class ProductsComponent implements OnInit {
         error => {
           console.log(error);
         });
-
-        this.cartSubscription = this.shoppingCartService.cartUpdated
-      .pipe(delay(100))
-      .subscribe(id => { 
-        this.cartTotal = this.shoppingCartService.cartTotal;
-      });
-    this.loadCartItems();
-  }
-
-  loadCartItems() {
-    this.cartTotal = this.shoppingCartService.cartTotal;
-    this.cartItems = this.shoppingCartService.cartItems;
   }
 
   goDetailProduct(id: number) {
-    this.router.navigate(['/detail-product', id]);
+    this.router.navigate(['/product-detail-view', id]);
   }
 
   addProductCart(product: any) {
+
+    //let contador: number = 0;
 
     let item: I_ShoppingCartItem = {
       id: product.id,
@@ -79,19 +50,57 @@ export class ProductsComponent implements OnInit {
       desc: "descripción",
       image: product.image,
       price: product.price,
-      quantity: 0,
+      quantity: 1,
       total: 1
     }
 
+    item.total = item.price * item.quantity;
+
+    this.shoppingCartService.cart.push(item);
+    console.log(this.shoppingCartService.cart);
+
+    // for (let i = 0; i < this.shoppingCartService.cart.length; i++) {
+    //   if(this.shoppingCartService.cart[i].id === item.id) {
+    //     this.shoppingCartService.cart[i].quantity++;
+    //     item.total = item.price * item.quantity;
+    //   }
+    // }
+
+    this.shoppingCartService.cartItems.push(item);
+
     this.shoppingCartService.addItem(item);
 
-    console.log(item);
-    console.log(this.shoppingCartService);
-
-    this.shoppingCartService.getSessionCart();
-    this.shoppingCartService.clearSessionStorage();
     this.shoppingCartService.updateItem(item);
-    console.log(this.shoppingCartService);
+
+    this.cartItems.push(item);
+
+    //contador++;
+  }
+
+  addProductWholesaleCart(product: any) {
+
+    let item: I_ShoppingCartItem = {
+      id: product.id,
+      name: product.name,
+      desc: "descripción",
+      image: product.image,
+      price: product.wholesale_price,
+      quantity: product.wholesale_quantity,
+      total: product.wholesale_quantity
+    }
+
+    item.total = item.price * item.quantity;
+
+    this.shoppingCartService.cart.push(item);
+    console.log(this.shoppingCartService.cart);
+
+    this.shoppingCartService.cartItems.push(item);
+
+    this.shoppingCartService.addItem(item);
+
+    this.shoppingCartService.updateItem(item);
+
+    this.cartItems.push(item);
 
   }
 

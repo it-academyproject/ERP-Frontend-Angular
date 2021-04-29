@@ -4,7 +4,7 @@
 
         <div class="card m-3 flex-fill" style="width: 20rem;" *ngFor="let product of products | paginate: { itemsPerPage: 3, currentPage: page}; let i = index">
             <!-- <a href="goDetailProduct(product.id)"><img *ngIf="product.image> 0" [src]="product.image" class="img-fluid w-100" alt="product image"></a>-->
-            <a href="#"><img src="../../assets/images/products.jpg" class="img-fluid w-100" alt="product image"></a>
+            <a (click)="goDetailProduct(product.id)"><img src="../../assets/images/products.jpg" class="img-fluid w-100" alt="product image"></a>
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <div class="row justify-content-center align-items-center text-center">
@@ -21,12 +21,10 @@
 
                     <div class="row">
                         <div class="col">
-                            <!-- <a href="addProductCard(product.id)" (click)="addProductCart()" class="btn btn-erp-blue text-erp-white">ADD TO CART</a> -->
-                            <!-- <a href="#" (click)="addProductCart(product.id, product.name, desc, product.image, product.price, quantity, total)" class="btn btn-erp-blue text-erp-white">ADD TO CART</a> -->
                             <a (click)="addProductCart(product)" class="btn btn-erp-blue text-erp-white">ADD TO CART</a>
                         </div>
                         <div class="col">
-                            <a href="#" (click)="addProductCart(product)" class="btn btn-erp-blue text-erp-white btn-second">ADD TO CART</a>
+                            <a (click)="addProductWholesaleCart(product)" class="btn btn-erp-blue text-erp-white btn-second">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
