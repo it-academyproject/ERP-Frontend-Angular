@@ -4,7 +4,9 @@
 
         <div class="card m-3 flex-fill" style="width: 20rem;" *ngFor="let product of products | paginate: { itemsPerPage: 3, currentPage: page}; let i = index">
             <!-- <a href="goDetailProduct(product.id)"><img *ngIf="product.image> 0" [src]="product.image" class="img-fluid w-100" alt="product image"></a>-->
-            <a (click)="goDetailProduct(product.id)"><img src="../../assets/images/products.jpg" class="img-fluid w-100" alt="product image"></a>
+            <a (click)="goDetailProduct(product.id)">
+            <img src="../../assets/images/products.jpg" class="img-fluid w-100" alt="product image">
+          </a>
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <div class="row justify-content-center align-items-center text-center">

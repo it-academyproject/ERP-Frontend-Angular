@@ -139,8 +139,8 @@ goCheckOut() {
   this.router.navigate(['/checkout']);
 };
 
-// ngOnDestroy(): void {
-//     this.productsSub$.unsubscribe();
-// }
-
+// ngOnDestroy can't be used in this component as is need it to either go to products or the cart
 }
+// documentation
+// https://stackoverflow.com/questions/7372067/is-there-any-way-to-prevent-input-type-number-getting-negative-values
+//

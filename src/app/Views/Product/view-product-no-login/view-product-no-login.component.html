@@ -32,7 +32,7 @@
     <div class="col-xl-6 col-md-12">
       <div class="card overflow-hidden">
         <div class="card-content">
-          <div class="card-body cleartfix">
+          <div class="card-body cleartfix pb-0">
             <div class="media align-items-stretch">
               <div class="align-self-center">
                 <div class="form-check">
@@ -44,11 +44,11 @@
                 <!--end form check-->
               </div>
               <div class="media-body d-flex justify-content-end">
-                <h4 class="offer text-dark">{{ showOfferPrice(products.price) | currency:"€":true }}</h4>
+                <h4 class="offer pl-5">{{ showOfferPrice(products.price) | currency:"€":true }}</h4>
               </div>
               <!--End media body1-->
               <div class="media-body d-flex justify-content-end">
-                <h4 class="showObjPrice">{{ products.price |currency:"€":true}}</h4>
+                <h4 class="showObjPrice fw-bold">{{ products.price |currency:"€":true}}</h4>
               </div>
               <!--End media body2-->
 
@@ -56,9 +56,16 @@
             <!--End stretch-->
           </div>
           <!--End card body1-->
-          <div class="card-footer border-0 d-flex justify-content-end pt-0">
-            <span class="small mySmall ">pay 0% interest with the credit online</span>
+          <div class="card-footer row border-0  pt-0">
+            <div class="col-6">
           </div>
+            <div class="col-3 small erasedPrice text-start fw-bold pl-0">
+              normal price
+            </div>
+            <div class="col-3 small offerPrice text-md-end fw-bold">
+              offer price
+            </div>
+          </div><!--End text info-->
           <!--end card footer1-->
 
           <div class="card-body cleartfix pb-0">
@@ -69,21 +76,15 @@
                     <input class="form-check-input" type="radio" name="checkPrices" id="wholeSales">
                     wholesales &#42;
                   </label>
-                  <div>
-                    <!-- <small><span class="small">&#42; units product considered wholesales</span></small> -->
-                    <span class="" id="shohwStock">price from {{products.wholesale_quantity}} units</span>
-                  </div>
-
-
 
                 </div><!-- End form-check2-->
               </div>
               <div class="media-body d-flex justify-content-end">
-                <h4 class="offer text-dark">{{ showOfferPrice(products.wholesale_price) | currency:"€":true }}</h4>
+                <h4 class="offer ">{{ showOfferPrice(products.wholesale_price) | currency:"€":true }}</h4>
               </div>
               <!--End media body1.2-->
               <div class="media-body d-flex justify-content-end ml-1">
-                <h4 class="showObjPrice">{{ products.wholesale_price | currency:"€":true}}</h4>
+                <h4 class="showObjPrice fw-bold">{{ products.wholesale_price | currency:"€":true}}</h4>
               </div>
               <!--End media body2.2-->
 
@@ -91,9 +92,18 @@
             <!--End stretch2-->
           </div>
           <!--End card body2-->
-          <div class="card-footer border-0 d-flex justify-content-end pt-0">
-            <span class="small mySmall ">pay 0% interest with the credit online</span>
+          <!-- info text-->
+          <div class="card-footer row border-0  pt-0">
+            <div class="col-6">
+            price from {{products.wholesale_quantity}} units
           </div>
+            <div class="col-3 erasedPrice small fw-bold  pl-0">
+              normal price
+            </div>
+            <div class="col-3 small offerPrice text-md-end fw-bold">
+              offer price
+            </div>
+          </div><!--End text info-->
           <!--end card footer2-->
           <!--Begin second block-->
           <div class="row border-top">
@@ -116,10 +126,14 @@
                     <div class="form-group d-flex align-items-center text-center  mt-1">
                       <label class="text-uppercase fw-bold mr-1 mt-1" for="unitsToBuy">Qty</label>
                       <div class="input-group">
-                        <input formControlName="quantity" class="form-control input-number form-control-sm rounded"
-                          type="number" id="quantity" name="quantity" min="0" max="{{ products.wholesale_quantity }}"
-                          placeholder="quantity" (ngModel)="products.price"
-                          (ngModelChange)="addingPrice(products.price)">
+                        <input formControlName="quantity"
+                        class="form-control input-number form-control-sm rounded"
+                          type="number" id="quantity" name="quantity"
+                          min="0" max="{{ products.wholesale_quantity }}"
+                          placeholder="quantity"
+                          (ngModel)="products.price"
+                          (ngModelChange)="addingPrice(products.price)"
+                          oninput="this.value=(!!this.value && Math.abs(this.value) >= 0) ? Math.abs(this.value) : null">
                       </div>
                     </div>
                     <div class="media-body d-flex justify-content-center">

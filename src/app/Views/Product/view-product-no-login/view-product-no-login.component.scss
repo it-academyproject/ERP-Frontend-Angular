@@ -15,7 +15,7 @@ $colorDark: #242A32;
 // delete price
 @mixin noPrice {
   text-decoration: line-through;
-  color: #333;
+  color: $colorDanger;
 }
 
 .offer {
@@ -31,6 +31,14 @@ $colorDark: #242A32;
 }
 .showObjPrice {
   color: $colorBtns1;
+}
+.erasedPrice {
+  color: $colorDanger;
+  text-transform: capitalize;
+}
+.offerPrice {
+  color: $colorBtns1;
+  text-transform: capitalize;
 }
   #showUnits{
     padding-top: 5px;
