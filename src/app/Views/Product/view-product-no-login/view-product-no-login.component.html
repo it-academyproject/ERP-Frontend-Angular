@@ -44,7 +44,7 @@
                 <!--end form check-->
               </div>
               <div class="media-body d-flex justify-content-end">
-                <h4 class="offer text-dark">{{ showOfferPrice(products.wholesale_price) | currency:"€":true }}</h4>
+                <h4 class="offer text-dark">{{ showOfferPrice(products.price) | currency:"€":true }}</h4>
               </div>
               <!--End media body1-->
               <div class="media-body d-flex justify-content-end">
@@ -166,8 +166,8 @@
                       <button class="btn btn-primary text-capitalize "
                       id="buyBtn"
                       type="submit"
-                      (click)="goCheckOut(products, productForm.get('quantity').value)"
-                      >buy now<fa-icon
+                      (click)="goCheckOut()"
+                      >check out<fa-icon
                           class="ml-2" [icon]="faCheckCircle" size="lg"></fa-icon></button>
                     </div>
                     <!--End media body second block-->

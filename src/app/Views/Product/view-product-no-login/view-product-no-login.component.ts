@@ -80,7 +80,7 @@ pickUpProduct(){
       (data: any) => {
         this.products = data.products[id - 1];
         console.log(this.products);
-        this.showOfferPrice(this.products.price);
+        this.addingPrice(this.products.price);
       },
       error => {
         console.log(error);
@@ -95,11 +95,22 @@ this.productForm = this.formBuilder.group({
 })
 }
 
-toShoppingCard(product: I_ShoppingCartItem, quantity?: number){
+toShoppingCard(product: any, quantity?: number){
 let units = this.productForm.get('quantity').value;
 quantity = parseInt(units);
-this.shoppingCartService.addItem(product, quantity);
-console.log(product.quantity);
+let item: I_ShoppingCartItem = {
+  id: product.id,
+  name: product.name,
+  desc: "descripción",
+  image: product.image,
+  price: product.price,
+  quantity: 1,
+  total: 1
+}
+item.total = product.price * quantity;
+this.addingPrice(item.total);
+this.shoppingCartService.addItem(item, quantity);
+this.shoppingCartService.updateItem(item);
 }
 
 addingPrice(num: number): number {
@@ -109,9 +120,9 @@ return  this.myValue = units*num;
 }
 
 showOfferPrice(num: number): number{
-  // add to the normal price a random margin
-  (num > 100) ? num = 100 : num;
-let sugarPrice: number = num + Math.floor(Math.random() * ((num - 5) + 1) + 5)* 0.2;
+  // add to the normal price a 25% margin
+  // can be changed at any given time
+let sugarPrice: number = num + num * 0.25;
 return sugarPrice;
 }
 
@@ -122,9 +133,9 @@ controlStocks(num:number): number{
    return this.products.stock;
 }
 
-goCheckOut(product: I_ShoppingCartItem, quantity: number) {
+goCheckOut() {
   console.log('checkout  works');
-  this.toShoppingCard(product, quantity);
+  //this.toShoppingCard(product, quantity);
   this.router.navigate(['/checkout']);
 };
 

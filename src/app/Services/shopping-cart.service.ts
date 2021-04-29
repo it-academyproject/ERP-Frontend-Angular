@@ -43,12 +43,7 @@ export class ShoppingCartService {
     this.cart.push(itemToAdd);
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
-  //  this.cartUpdated.emit(itemToAdd.id);
-  this.showItemsInCart(itemToAdd.id);
-  }
-  showItemsInCart(obj) {
-    this.cartUpdated.emit(obj);
-    console.log('trigger ');
+    this.cartUpdated.emit(itemToAdd.id);
   }
   updateItem(itemToUpdate: I_ShoppingCartItem) {
     this.cart = this.cartItems.map(cartItem => {
