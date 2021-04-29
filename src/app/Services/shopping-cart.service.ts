@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { I_ShoppingCartItem } from '../Models/shoppingCartItem';
 
 
@@ -10,7 +10,9 @@ export class ShoppingCartService {
   sesionCartName = 'erpCart';
 
   // Observable: used to emit a string (e.g.: item id) when the cart is updated (e.g.: used in "shopping-cart.component.ts")
-  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+//  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+@Input() obj: any;
+@Output() cartUpdated = new EventEmitter();
 
   constructor() {
     this.cart = this.cartItems;
@@ -28,8 +30,10 @@ export class ShoppingCartService {
   get cartTotal() {
     let total = 0;
     for (let i = 0; i < this.cartItems.length; i++) {
+      console.log(this.cartItems[i].total);
       total += this.cartItems[i].total;
     }
+    console.log(total);
     return total;
   }
 
@@ -39,11 +43,13 @@ export class ShoppingCartService {
     this.cart.push(itemToAdd);
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
-    this.cartUpdated.emit(itemToAdd.id);
-    console.log(this.cartUpdated.emit(itemToAdd.id));
-
+  //  this.cartUpdated.emit(itemToAdd.id);
+  this.showItemsInCart(itemToAdd.id);
   }
-
+  showItemsInCart(obj) {
+    this.cartUpdated.emit(obj);
+    console.log('trigger ');
+  }
   updateItem(itemToUpdate: I_ShoppingCartItem) {
     this.cart = this.cartItems.map(cartItem => {
       return (cartItem.id === itemToUpdate.id? itemToUpdate: cartItem);

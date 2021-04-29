@@ -21,17 +21,17 @@ import { I_ShoppingCartItem } from 'src/app/Models/shoppingCartItem';
   styleUrls: ['./view-product-no-login.component.scss','product-view-no-login.scss']
 })
 export class ViewProductNoLoginComponent implements OnInit {
-  @Input() products: any
-  // @Output() cartUpdated = new EventEmitter();
-  public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+  @Input() type: any
+  @Output() cartUpdated = new EventEmitter();
 
+  products: any;
   product: any;
   productsSub$: Subscription;
   id: number;
   myNum: number = 1;
   // cart from service
   cart: ShoppingCartService [] = [];
-  // public cartUpdated: EventEmitter<string> = new EventEmitter<string>();
+
    //Icons
   faMinus = faMinus;
   faPlus = faPlus;
@@ -73,14 +73,9 @@ productForm: FormGroup;
 this.pickUpProduct();
 
 }
-    /*
-     * product should come from F52
-     * <a routerLink="product.id"></a>
-     */
+
 pickUpProduct(){
   let id = +this.route.snapshot.paramMap.get('id');
-  console.log(id);
-  // fake way to obtain one product
   this.productsService.getProducts()
     .subscribe(
       (data: any) => {
@@ -102,13 +97,11 @@ this.productForm = this.formBuilder.group({
 })
   }
 
-toShoppingCard(product: I_ShoppingCartItem, quantity: number){
-
+toShoppingCard(product: I_ShoppingCartItem, quantity?: number){
 let units = this.productForm.get('quantity').value;
 quantity = parseInt(units);
 this.shoppingCartService.addItem(product, quantity);
-console.log(this.productForm);
-console.log(this.cartTotal);
+console.log(product.quantity);
   }
 
 addingPrice(num: number): number {
