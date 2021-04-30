@@ -40,10 +40,7 @@ export class ShoppingCartService {
   addItem(itemToAdd: I_ShoppingCartItem, num?: number) {
     this.cart = this.cartItems;
    (num) ? itemToAdd.quantity = num : itemToAdd;
-  this.cart.find((product) => {
-    (product.id == itemToAdd.id) ? product.quantity + itemToAdd.quantity :
-                                  this.cart.push(itemToAdd);
-  })
+   this.cart.push(itemToAdd);
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
     this.cartUpdated.emit(itemToAdd.id);
