@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs';
 import { I_ShoppingCartItem } from 'src/app/Models/shoppingCartItem';
 // user experience
 import { ToastrService } from 'ngx-toastr';
+// back history
+import { BackService } from 'src/app/Services/back.service';
 
 
 @Component({
@@ -75,7 +77,8 @@ constructor(private productsService: ProductsService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private navigationBack: BackService) {
      this.createForm();
                }
 
@@ -159,14 +162,14 @@ closeButton: true});
 // set time to redirected
 setTimeout(() => {
     this.router.navigate(['/checkout']);
-}, 1500);
-
-
-
+              }, 1500);
 }
 
+back(): void {
+  this.navigationBack.goBack();
+}
 // ngOnDestroy can't be used in this component as is need it to either go to products or the cart
 }
 // documentation
 // https://stackoverflow.com/questions/7372067/is-there-any-way-to-prevent-input-type-number-getting-negative-values
-//
+// open product ViewProductNoLoginComponent// https://stackoverflow.com/questions/51165821/how-to-load-the-same-product-after-refresh-the-browser-window-in-angular-6

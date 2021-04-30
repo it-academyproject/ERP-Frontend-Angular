@@ -1,10 +1,16 @@
 <!---New era-->
 <div class="container mt-5 mb-5" id="newEra">
+  <div class="row">
+<div class="col-12 d-flex justify-content'start">
+
+</div>
+  </div>
   <div class="row mt-5">
     <div class="col-xl-6 col-md-12">
       <div class="card" *ngIf="products">
         <!-- <img class="" *ngIf="products.image > 0" [src]="products.image | noProductImage"  alt="{{ products.name }}" > -->
         <img class="singleProduct" src="https://picsum.photos/300/200/?blur=1&grayscale" alt="{{ products.name }}">
+        <span><a class="small" (click)="back()">back to products</a></span>
       </div>
       <div class="card border-0">
         <div class="card-body cleartfix">
@@ -20,11 +26,11 @@
              </div>
              <div>
                <span class="text-capitalize fs-5">
-              VAT: {{ (products.vat/100) | percent:'2.1'}}
+              <!-- VAT: {{ (products.vat/100) | percent:'2.1'}} -->
+              units in store: {{ products.stock }} units
              </span>
              </div>
           </div>
-
         </div>
       </div>
     </div><!-- End column right image-->
@@ -111,11 +117,11 @@
               <div class="card-body cleartfix">
                 <div class="media align-items-stretch d-flex justify-content-between">
                   <div class="media-body col-md-auto pr-0">
-                    <div class="text-dark text-capitalize fs-5 fw-bold">units in store</div>
+                    <div class="info text-dark fs-5">Applied VAT</div>
                   </div>
                   <!--End media body second block-->
                   <div class="media-body d-flex  col-3">
-                    <div class="text-dark fw-bold" id="showUnits">{{ products.stock }}</div>
+                    <div class="text-dark fw-bold fs-5 pt-0" id="showUnits">{{ (products.vat/100) | percent:'2.1'}}</div>
                   </div>
                   <!--End media body second block-->
                 </div>
@@ -157,7 +163,7 @@
             <div class="col-md-6 border-start border-top">
               <div class="card-body cleartfix">
                 <div class="media align-items-stretch">
-                  <div class="media-body d-flex justify-content-start">
+                  <div class="media-body  d-flex justify-content-center">
                     <div class="text-dark mr-1">
                       <fa-icon [icon]="faClipBoardCheck" size="md"></fa-icon>
                     </div>
@@ -168,7 +174,7 @@
                 <div class="media-body d-flex justify-content-center">
                   <form class="needs-validation" [formGroup]="productForm" novalidate>
                     <div class="form-group d-flex pt-1">
-                      <input class="form-control form-control-sm  mt-2" formControlName="totalPrice"
+                      <input class="form-control form-control-sm  mt-1" formControlName="totalPrice"
                         value="{{ products.price | currency:'€':true }}" [(ngModel)]="myValue" [placeholder]="placeholder.total"
                         aria-label="showPrice" id="showEuro" type="text" readonly>
                       <span class="input-group-btn mt-2 col-2">

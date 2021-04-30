@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'new-client', component: NewClientComponent },
   { path: 'client-detail/:id', component: ClientDetailComponent },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'products-without-session', component: ProductsWithoutSessionComponent },
+  { path: 'products-without-session', component: ProductsWithoutSessionComponent},
   { path: 'products-without-session/:id', component: ViewProductNoLoginComponent },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'employees-list', component: EmployeesListComponent, canActivate: [AuthGuard] },
