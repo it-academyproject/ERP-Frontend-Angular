@@ -121,13 +121,16 @@ let item: I_ShoppingCartItem = {
   desc: "descripción",
   image: product.image,
   price: product.price,
-  quantity: 1,
+  quantity: quantity,
   total: 1
 }
-item.total = product.price * quantity;
-this.addingPrice(item.total);
+
 this.shoppingCartService.addItem(item, quantity);
+this.shoppingCartService.getSessionCart();
+// without this prices don't get fixed in front
+this.shoppingCartService.clearSessionStorage();
 this.shoppingCartService.updateItem(item);
+
 // user experience
 this.toastr.success(`${item.name} added successfully to your cart`, "Added Product",{
   closeButton: true
@@ -139,6 +142,7 @@ this.sendIt = true;
 addingPrice(num: number): number {
   let units = this.productForm.get('quantity').value;
     this.controlStocks(units);
+    console.log( this.myValue = units*num);
 return  this.myValue = units*num;
 }
 
