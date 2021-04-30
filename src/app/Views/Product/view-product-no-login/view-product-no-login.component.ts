@@ -64,8 +64,6 @@ placeholder: any = {
   total: "Total to pay"
 }
 
-// myFullResImg: string = this.products.image;
-
 // declaration reactive form with formBuilder
 productForm: FormGroup;
 // reactive form with form Control
@@ -136,7 +134,6 @@ this.toastr.success(`${item.name} added successfully to your cart`, "Added Produ
 });
 // boolean to be used in goCheckOut
 this.sendIt = true;
-console.log(this.sendIt);
 }
 
 addingPrice(num: number): number {
@@ -164,7 +161,7 @@ closeButton: true});
 // set time to redirected
 setTimeout(() => {
     this.router.navigate(['/checkout']);
-              }, 1500);
+  }, 1500);
 }
 
 back(): void {
@@ -173,9 +170,3 @@ back(): void {
 }
 // ngOnDestroy can't be used in this component as is need it to either go to products or the cart
 }
-// documentation
-// https://stackoverflow.com/questions/7372067/is-there-any-way-to-prevent-input-type-number-getting-negative-values
-// open product ViewProductNoLoginComponent
-// https://stackoverflow.com/questions/51165821/how-to-load-the-same-product-after-refresh-the-browser-window-in-angular-6
-// zoom
-// https://www.npmjs.com/package/ngx-image-zoom
