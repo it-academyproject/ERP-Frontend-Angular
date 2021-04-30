@@ -1,19 +1,23 @@
 
 
 import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators  } from '@angular/forms';
+// icons
 import { faCartPlus, faClipboardCheck, faEuroSign, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { FormControl, FormGroup, FormBuilder, Validators  } from '@angular/forms';
 // services
 import { ProductsService } from 'src/app/Services/products.service';
 import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
-// single product
+// single product model
 import { newProductDto } from "src/app/Models/DTOs/newProductDto";
 // what page we are at
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-// cartT
+// cartT product model
 import { I_ShoppingCartItem } from 'src/app/Models/shoppingCartItem';
+// user experience
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-view-product-no-login',
@@ -29,6 +33,7 @@ export class ViewProductNoLoginComponent implements OnInit {
   productsSub$: Subscription;
   id: number;
   myNum: number = 1;
+  sendIt: boolean = false;
   // cart from service
   cart: ShoppingCartService [] = [];
 
@@ -51,6 +56,12 @@ export class ViewProductNoLoginComponent implements OnInit {
 public cartTotal: number = 0;
 public cartItems: I_ShoppingCartItem[] = [];
 
+// placeholders
+placeholder: any = {
+  quantity: "Quantity",
+  total: "Total to pay"
+}
+
 // declaration reactive form with formBuilder
 productForm: FormGroup;
 // reactive form with form Control
@@ -63,7 +74,8 @@ constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private toastr: ToastrService) {
      this.createForm();
                }
 
@@ -74,6 +86,7 @@ this.pickUpProduct();
 }
 
 pickUpProduct(){
+  //  pickup product through id
   let id = +this.route.snapshot.paramMap.get('id');
   this.productsService.getProducts()
     .subscribe(
@@ -83,6 +96,7 @@ pickUpProduct(){
         this.addingPrice(this.products.price);
       },
       error => {
+        // manage the error
         console.log(error);
       });
 }
@@ -111,6 +125,13 @@ item.total = product.price * quantity;
 this.addingPrice(item.total);
 this.shoppingCartService.addItem(item, quantity);
 this.shoppingCartService.updateItem(item);
+// user experience
+this.toastr.success(`${item.name} added successfully to your cart`, "Added Product",{
+  closeButton: true
+});
+// boolean to be used in goCheckOut
+this.sendIt = true;
+console.log(this.sendIt);
 }
 
 addingPrice(num: number): number {
@@ -120,24 +141,29 @@ return  this.myValue = units*num;
 }
 
 showOfferPrice(num: number): number{
-  // add to the normal price a 25% margin
-  // can be changed at any given time
+  // add to the normal price a 25% margin & can be changed at any given time
 let sugarPrice: number = num + num * 0.25;
 return sugarPrice;
 }
 
-
 controlStocks(num:number): number{
-  console.log(num);
-  console.log(this.products.stock);
    return this.products.stock;
 }
 
 goCheckOut() {
-  console.log('checkout  works');
-  //this.toShoppingCard(product, quantity);
-  this.router.navigate(['/checkout']);
-};
+  // user experience
+(this.sendIt == false) ?  this.toastr.error("Nothing added in the cart! You have an empty cart.", "No Items added", {
+closeButton: true})
+                      : this.toastr.info("You are going to be redirected to checkout. Thanks for shopping with us!", "Check Out", {
+closeButton: true});
+// set time to redirected
+setTimeout(() => {
+    this.router.navigate(['/checkout']);
+}, 1500);
+
+
+
+}
 
 // ngOnDestroy can't be used in this component as is need it to either go to products or the cart
 }
