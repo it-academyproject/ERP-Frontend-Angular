@@ -143,7 +143,10 @@ addingPrice(num: number): number {
   let units = this.productForm.get('quantity').value;
     this.controlStocks(units);
     console.log( this.myValue = units*num);
-return  this.myValue = units*num;
+    this.myValue = units*num;
+    // clean the decimals
+    this.myValue = this.myValue.toFixed(2);
+return  this.myValue;
 }
 
 showOfferPrice(num: number): number{
