@@ -108,7 +108,9 @@ createForm(){
     // reactive form group Builder
 this.productForm = this.formBuilder.group({
   quantity: ['1', Validators.pattern('^[0-9]+$')],
-  totalPrice: ['', Validators.pattern('^[0-9]+$')]
+  totalPrice: ['', Validators.pattern('^[0-9]+$')],
+  wholesalePriceButton: [''],
+  normalPriceButton: ['']
 })
 }
 
@@ -124,7 +126,8 @@ let item: I_ShoppingCartItem = {
   quantity: quantity,
   total: 1
 }
-
+item.total = product.price * quantity;
+this.addingPrice(item.total);
 this.shoppingCartService.addItem(item, quantity);
 this.shoppingCartService.getSessionCart();
 // without this prices don't get fixed in front

@@ -134,6 +134,7 @@
                           type="number" id="quantity" name="quantity"
                           min="0" max="{{ products.wholesale_quantity }}"
                           [placeholder]="placeholder.quantity"
+                          formControlName="quantity"
                           (ngModel)="products.price"
                           (ngModelChange)="addingPrice(products.price)"
                           oninput="this.value=(!!this.value && Math.abs(this.value) >= 0) ? Math.abs(this.value) : null">
