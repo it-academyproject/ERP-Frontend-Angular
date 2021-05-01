@@ -71,6 +71,9 @@ productForm: FormGroup;
             quantity: new FormControl('1'),
             totalPrice: new FormControl()
           }); */
+radioForm = new FormGroup({
+  radioCheckForm: new FormControl('',Validators.required)
+});
 
 constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
@@ -80,12 +83,12 @@ constructor(private productsService: ProductsService,
               private toastr: ToastrService,
               private navigationBack: BackService) {
      this.createForm();
+     // this.radioForm();
                }
 
 ngOnInit(): void {
 
 this.pickUpProduct();
-
 }
 
 pickUpProduct(){
@@ -108,12 +111,20 @@ createForm(){
     // reactive form group Builder
 this.productForm = this.formBuilder.group({
   quantity: ['1', Validators.pattern('^[0-9]+$')],
-  totalPrice: ['', Validators.pattern('^[0-9]+$')],
-  wholesalePriceButton: [''],
-  normalPriceButton: ['']
+  totalPrice: ['', Validators.pattern('^[0-9]+$')]
 })
 }
 
+submitRadio(){
+  console.log('submit radio works');
+  console.log(this.radioForm.value);
+  
+}
+changePrice(e){
+  console.log(e.target.value);
+  console.log('change price');
+  console.log(this.radioForm.value);
+}
 toShoppingCard(product: any, quantity?: number){
 let units = this.productForm.get('quantity').value;
 quantity = parseInt(units);
@@ -126,8 +137,10 @@ let item: I_ShoppingCartItem = {
   quantity: quantity,
   total: 1
 }
+// updates price in cartT
+// product.price = this.submitRadio();
 item.total = product.price * quantity;
-this.addingPrice(item.total);
+// this.addingPrice(item.total);
 this.shoppingCartService.addItem(item, quantity);
 this.shoppingCartService.getSessionCart();
 // without this prices don't get fixed in front
