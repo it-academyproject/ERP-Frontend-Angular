@@ -36,6 +36,8 @@ export class ViewProductNoLoginComponent implements OnInit {
   id: number;
   myNum: number = 1;
   sendIt: boolean = false;
+  radioTrue: boolean = true;
+  price: number;
   // cart from service
   cart: ShoppingCartService [] = [];
 
@@ -114,20 +116,25 @@ this.productForm = this.formBuilder.group({
   totalPrice: ['', Validators.pattern('^[0-9]+$')]
 })
 }
-
-submitRadio(){
-  console.log('submit radio works');
+//  you fool! getters and setters!
+getRadioForm(num: number): number {
   console.log(this.radioForm.value);
-  
+  (num == 1) ? this.price = this.products.price
+            : this.price = this.products.wholesale_price;
+this.myValue = this.price;
+  return this.price;
 }
 changePrice(e){
   console.log(e.target.value);
-  console.log('change price');
-  console.log(this.radioForm.value);
+  this.getRadioForm(e.target.value);
+  (e.target.value == 1) ? this.radioTrue = true : this.radioTrue = false;
+  console.log(this.radioTrue);
 }
 toShoppingCard(product: any, quantity?: number){
-let units = this.productForm.get('quantity').value;
-quantity = parseInt(units);
+// let units = this.productForm.get('quantity').value;
+// quantity = parseInt(units);
+// (this.radioTrue == true) ? product.price = this.products.price : product.price = this.products.wholesale_price;
+
 let item: I_ShoppingCartItem = {
   id: product.id,
   name: product.name,
@@ -137,16 +144,17 @@ let item: I_ShoppingCartItem = {
   quantity: quantity,
   total: 1
 }
-// updates price in cartT
-// product.price = this.submitRadio();
-item.total = product.price * quantity;
-// this.addingPrice(item.total);
+
+if(this.radioTrue == true) {
+  item.price = product.price
+} else {
+  item.price = product.wholesale_price;
+}
+item.total = item.price * quantity;
 this.shoppingCartService.addItem(item, quantity);
 this.shoppingCartService.getSessionCart();
-// without this prices don't get fixed in front
 this.shoppingCartService.clearSessionStorage();
 this.shoppingCartService.updateItem(item);
-
 // user experience
 this.toastr.success(`${item.name} added successfully to your cart`, "Added Product",{
   closeButton: true
@@ -155,13 +163,18 @@ this.toastr.success(`${item.name} added successfully to your cart`, "Added Produ
 this.sendIt = true;
 }
 
+setDefaultValues() {
+  this.radioForm.patchValue({radioCheckForm:"1"})
+}
+
 addingPrice(num: number): number {
   let units = this.productForm.get('quantity').value;
+  units = parseInt(units);
     this.controlStocks(units);
-    console.log( this.myValue = units*num);
     this.myValue = units*num;
     // clean the decimals
     this.myValue = this.myValue.toFixed(2);
+    console.log(this.myValue)
 return  this.myValue;
 }
 
