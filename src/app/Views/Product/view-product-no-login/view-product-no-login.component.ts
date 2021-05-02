@@ -68,11 +68,7 @@ placeholder: any = {
 
 // declaration reactive form with formBuilder
 productForm: FormGroup;
-// reactive form with form Control
-          /* productForm = new FormGroup({
-            quantity: new FormControl('1'),
-            totalPrice: new FormControl()
-          }); */
+
 radioForm = new FormGroup({
   radioCheckForm: new FormControl('',Validators.required)
 });
@@ -85,7 +81,6 @@ constructor(private productsService: ProductsService,
               private toastr: ToastrService,
               private navigationBack: BackService) {
      this.createForm();
-     // this.radioForm();
                }
 
 ngOnInit(): void {
@@ -116,24 +111,20 @@ this.productForm = this.formBuilder.group({
   totalPrice: ['', Validators.pattern('^[0-9]+$')]
 })
 }
-//  you fool! getters and setters!
+
 getRadioForm(num: number): number {
-  console.log(this.radioForm.value);
   (num == 1) ? this.price = this.products.price
             : this.price = this.products.wholesale_price;
 this.myValue = this.price;
   return this.price;
 }
+
 changePrice(e){
-  console.log(e.target.value);
   this.getRadioForm(e.target.value);
   (e.target.value == 1) ? this.radioTrue = true : this.radioTrue = false;
-  console.log(this.radioTrue);
 }
+
 toShoppingCard(product: any, quantity?: number){
-// let units = this.productForm.get('quantity').value;
-// quantity = parseInt(units);
-// (this.radioTrue == true) ? product.price = this.products.price : product.price = this.products.wholesale_price;
 
 let item: I_ShoppingCartItem = {
   id: product.id,
@@ -144,7 +135,8 @@ let item: I_ShoppingCartItem = {
   quantity: quantity,
   total: 1
 }
-
+// pick value from radio buttons
+// CAUTION ternary doesn't work, ale¡ready tried
 if(this.radioTrue == true) {
   item.price = product.price
 } else {
