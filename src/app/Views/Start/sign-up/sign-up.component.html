@@ -37,7 +37,7 @@
                  [ngClass]="{'is-invalid':isValidInput('inputSurname')}">
           <div class="invalid-feedback">
             <span class="small" *ngIf="signUpForm.get('inputSurname')?.errors?.required">
-              Your surname is required
+              Your Last Name is required
             </span>
             <span class="small" *ngIf="signUpForm.get('inputSurname')?.errors?.minlength">
               Minimum {{signUpForm.get('inputSurname')?.errors?.minlength.requiredLength}} characters required
@@ -72,10 +72,10 @@
                    class="form-control"
                    [placeholder]="placeholder.address"
                    formControlName="inputAddress"
-                   [ngClass]="{'is-invalid':isValidInput('address.inputAddress')}">
+                   [ngClass]="{'is-invalid':isValidInput('street.inputAddress')}">
             <div class="invalid-feedback">
-              <span class="small" *ngIf="signUpForm.get('address.inputAddress')?.errors?.required">
-                Your address is required
+              <span class="small" *ngIf="signUpForm.get('street.inputAddress')?.errors?.required">
+                Your street and number are required
               </span>
             </div>
           </div>
@@ -84,17 +84,17 @@
             <select class="form-select"
                     formControlName="inputCountry"
                     (change)="onChangeCountry($event.target.value)"
-                    [ngClass]="{'is-invalid':isValidInput('address.inputCountry')}">
+                    [ngClass]="{'is-invalid':isValidInput('country.inputCountry')}">
               <option *ngFor="let country of countryInfo; let i = index"
                       value="{{i}}">{{country.CountryName}}</option>
             </select>
             <div class="invalid-feedback">
-              <span class="small" *ngIf="signUpForm.get('address.inputCountry')?.errors?.required">
+              <span class="small" *ngIf="signUpForm.get('country.inputCountry')?.errors?.required">
                 Your country is required
               </span>
             </div>
           </div>
-          <div class="col-md-3 pt-md-4 pb-md-2 py-4">
+          <!--<div class="col-md-3 pt-md-4 pb-md-2 py-4">
             <label class="form-text ps-1">Province</label>
             <select class="form-select"
                     formControlName="inputProvince"
@@ -108,30 +108,30 @@
                 Your province is required
               </span>
             </div>
-          </div>
+          </div>-->
           <div class="col-md-3 pt-md-4 pb-md-2 py-4">
             <label class="form-text ps-1">City</label>
             <input type="text"
                    class="form-control"
                    formControlName="inputCity"
-                   [ngClass]="{'is-invalid':isValidInput('address.inputCity')}">
+                   [ngClass]="{'is-invalid':isValidInput('city.inputCity')}">
             <div class="invalid-feedback">
-              <span class="small" *ngIf="signUpForm.get('address.inputCity')?.errors?.required">
+              <span class="small" *ngIf="signUpForm.get('city.inputCity')?.errors?.required">
                 Your city is required.
               </span>
-              <span class="small" *ngIf="signUpForm.get('address.inputCity')?.errors?.minlength">
+              <span class="small" *ngIf="signUpForm.get('city.inputCity')?.errors?.minlength">
                 Minimum {{signUpForm.get('address.inputCity')?.errors?.minlength.requiredLength}} characters required
               </span>
             </div>
           </div>
           <div class="col-md-3 pt-md-4 pb-md-2 py-4">
-            <label class="form-text ps-1">Zip</label>
+            <label class="form-text ps-1">Zip Code</label>
             <input type="text"
                    class="form-control"
                    formControlName="inputZIP"
-                   [ngClass]="{'is-invalid':isValidInput('address.inputZIP')}">
+                   [ngClass]="{'is-invalid':isValidInput('zipcode.inputZIP')}">
             <div class="invalid-feedback">
-              <span class="small" *ngIf="signUpForm.get('address.inputZIP')?.errors?.required">
+              <span class="small" *ngIf="signUpForm.get('zipcode.inputZIP')?.errors?.required">
                 Your zip code is required
               </span>
             </div>

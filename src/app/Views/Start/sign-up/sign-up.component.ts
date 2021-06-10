@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
   new_user: UserSignUpDto;
 
   countryInfo: any[] = [];
-  provinceInfo: any[] = [];
+  //provinceInfo: any[] = [];
   cityInfo: any[] = [];
 
   closeResult = '';
@@ -53,10 +53,10 @@ placeholder = {
 
   constructor(private modalService: NgbModal,
               private signupService: SignupService,
-              private fb: FormBuilder,
-              private country: CountriesService,
-              private toastr: ToastrService,
-              private router: Router) {
+              private fb          : FormBuilder,
+              private country     : CountriesService,
+              private toastr      : ToastrService,
+              private router      : Router) {
 
     this.createForm();
 
@@ -74,8 +74,8 @@ placeholder = {
         inputAddress: ['', Validators.required],
         inputCity: ['', [Validators.required, Validators.minLength(2)]],
         inputCountry: ['', Validators.required],
-        inputProvince: ['', Validators.required],
-        inputZIP: ['', Validators.required],
+        //inputProvince: ['', Validators.required],
+        inputZipCode: ['', Validators.required],
       }),
       inputDNI: ['', [Validators.required, Validators.pattern(this.regexDNICIF), this.checkDNI]],
       inputEmail: ['', [Validators.required, Validators.pattern(this.regexEmail)]],
@@ -158,8 +158,8 @@ placeholder = {
     }
   }
 
-  isValidInput(name: string): boolean {
-    const input: any = this.signUpForm.get(name);
+  isValidInput(name_and_surname: string): boolean {
+    const input: any = this.signUpForm.get(name_and_surname);
     return input.touched && input.invalid
   }
 
@@ -208,13 +208,13 @@ return null;
   }
 
   onChangeCountry(inputCountry) {
-    this.provinceInfo = this.countryInfo[inputCountry].States;
-    this.cityInfo = this.provinceInfo[0].Cities;
+    this.countryInfo = this.countryInfo[inputCountry].States;
+    //this.cityInfo = this.CountryInfo[0].Cities;
   }
 
-  onChangeProvince(inputProvince) {
+ /* onChangeProvince(inputProvince) {
     this.cityInfo = this.provinceInfo[inputProvince].Cities;
-  }
+  }*/
 
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {

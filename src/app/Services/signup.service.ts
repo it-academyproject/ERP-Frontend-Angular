@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { UserSignUpDto } from 'src/app/Models/DTOs/newUserDto';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -24,9 +24,15 @@ export class SignupService {
     this.baseUrl = 'http://217.76.158.200:8080';
   }
 
+   // POST
+   /*UserSingUp(body: string): Observable<UserSignUpDto> {
+    return this.httpClient.post<UserSignUpDto>(this.baseUrl + this.endPoint, body, {
+      responseType: 'json',
+    }*/
+
   createUser(user: UserSignUpDto) {
-    return this.httpClient.post(`${this.baseUrl}${this.endPoint}`, user)
-    .pipe(
+    return this.httpClient.post<UserSignUpDto>(`${this.baseUrl}${this.endPoint}`, user)
+      .pipe(
       catchError((err) => {
         console.log(err);
         if(err instanceof HttpErrorResponse) {
