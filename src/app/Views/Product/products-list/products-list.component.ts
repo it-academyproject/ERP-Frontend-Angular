@@ -76,7 +76,6 @@ export class ProductsListComponent implements OnInit {
         this.setPagesArray();
       },
       (error) => {
-        console.log(error);
       }
     );
   }

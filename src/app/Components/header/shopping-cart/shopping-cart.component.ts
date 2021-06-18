@@ -26,14 +26,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   // To unsubscribe from ngOnDestroy
   public cartSubscription: Subscription;
 
-  constructor(public shoppingCartService: ShoppingCartService, private route: Router) { 
+  constructor(public shoppingCartService: ShoppingCartService, private route: Router) {
   }
 
   ngOnInit(): void {
     // Subscription to the cart update observable
     this.cartSubscription = this.shoppingCartService.cartUpdated
       .pipe(delay(100))
-      .subscribe(id => { 
+      .subscribe(id => {
         this.cartTotal = this.shoppingCartService.cartTotal;
         this.cartItems = this.shoppingCartService.cartItems;
       });
@@ -48,7 +48,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.cartTotal = this.shoppingCartService.cartTotal;
     this.cartItems = this.shoppingCartService.cartItems;
   }
-  
+
   updateItemTotal(i:number) {
     let item = this.cartItems[i];
     if(item.quantity < 0){

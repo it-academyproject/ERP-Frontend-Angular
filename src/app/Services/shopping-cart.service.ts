@@ -35,13 +35,18 @@ export class ShoppingCartService {
 
   addItem(itemToAdd: I_ShoppingCartItem) {
     this.cart = this.cartItems;
-    this.cart.find((product)=>{
-      if(product.id == itemToAdd.id){
-        product.quantity + itemToAdd.quantity
-      }else{
-        this.cart.push(itemToAdd);
+    let oldProd = this.cart.find((product)=>{
+      if(product.id === itemToAdd.id){
+        return product
       }
     });
+    if (oldProd) {
+      oldProd.quantity += itemToAdd.quantity;
+      oldProd.total += itemToAdd.total;
+    } else {
+      this.cart.push(itemToAdd);
+    }
+
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
     this.cartUpdated.emit(itemToAdd.id)
@@ -61,7 +66,7 @@ export class ShoppingCartService {
     this.cart = this.cart.filter(cartItem => {
       return cartItem.id !== itemToRemove.id;
     });
-    
+
     this.saveSessionStorage(this.cart);
     // Emit cart update observable
     this.cartUpdated.emit(itemToRemove.id);
@@ -124,7 +129,7 @@ export class ShoppingCartService {
     item.total    = item.price * item.quantity;
     this.cart.push(item);
 
-    
+
     item = new CartItem();
     item.id       = '004';
     item.name     = 'xKindle Paperwhite | Waterproof, 6"';
@@ -165,7 +170,7 @@ export class ShoppingCartService {
     item.total    = item.price * item.quantity;
     this.cart.push(item);
 
-    
+
     item = new CartItem();
     item.id       = '008';
     item.name     = 'xKindle Paperwhite | Waterproof, 6"';
@@ -206,7 +211,7 @@ export class ShoppingCartService {
     item.total    = item.price * item.quantity;
     this.cart.push(item);
 
-    
+
     item = new CartItem();
     item.id       = '012';
     item.name     = 'xKindle Paperwhite | Waterproof, 6"';
