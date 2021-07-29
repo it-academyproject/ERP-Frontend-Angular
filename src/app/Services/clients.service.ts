@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { RespClients } from '../Models/ReqResClients';
+
 
 
 @Injectable({
@@ -37,18 +40,20 @@ export class ClientsService {
     return this.httpClient.get( `${this.url}${this.endPoint}/list/${amount}/${page}`, {headers} );
   }
 
-  getClientByID(id: string ) {
+  getClientByID(id: string ):Observable<RespClients> {
     const headers = new HttpHeaders({
       Authorization: this.token
     });
-    return this.httpClient.get( `${this.url}${this.endPoint}/${id}`, {headers} );
+    console.log(headers)
+    return this.httpClient.get<RespClients>( `${this.url}${this.endPoint}/${id}`, {headers} );
   }
 
   updateClient(client) {
     const headers = new HttpHeaders({
       Authorization: this.token
     });
-    return this.httpClient.put( `${this.url}${this.endPoint}/${client.id}`, client, {headers} );
+    console.log(client)
+    return this.httpClient.put( `${this.url}${this.endPoint}`, client, {headers} );
   }
 
   deleteClient(id: string) {

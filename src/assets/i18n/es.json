@@ -148,7 +148,11 @@
         "back-to-client-list": "Volver a la administración de clientes",
         "client-detail": "Detalle del Cliente",
         "name": "Nombre",
-        "address": "Dirección",
+        "street": "Calle",
+        "number": "Número",
+        "city": "Ciudad",
+        "zip": "Código postal",
+        "country": "País",
         "cif": "CIF",
         "buttons": {
             "delete": "Borrar",

@@ -17,16 +17,16 @@
     <table class="table align-middle">
       <thead>
         <tr>
-          <th scope="col">{{ 'Clients-list.list.head-name' | translate }}</th>
-          <th scope="col">{{ 'Clients-list.list.head-address' | translate }}</th>
-          <th scope="col">{{ 'Clients-list.list.head-cif' | translate }}</th>
-          <th scope="col">{{ 'Clients-list.list.head-options' | translate }}</th>
+          <th scope="col" class="col-2">{{ 'Clients-list.list.head-name' | translate }}</th>
+          <th scope="col" class="col-2">{{ 'Clients-list.list.head-address' | translate }}</th>
+          <th scope="col" class="col-2">{{ 'Clients-list.list.head-cif' | translate }}</th>
+          <th scope="col" class="col-1 text-center">{{ 'Clients-list.list.head-options' | translate }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let client of clients; let i = index">
           <td>{{ client.name_and_surname }}</td>
-          <td>{{ client.address.street }}</td>
+          <td>{{ client.address.street }}, {{ client.address.city }}</td>
           <td>{{ client.dni }}</td>
 
           <!-- Edit/Delete -->
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="modal-body">
-                  {{ 'Clients-list.modal.message' | translate }} "{{client.nameAndSurname}}"?
+                  {{ 'Clients-list.modal.message' | translate }} "{{client.name_and_surname}}"?
                 </div>
 
                 <div class="modal-footer">

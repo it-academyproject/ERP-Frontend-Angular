@@ -148,7 +148,11 @@
         "back-to-client-list": "Tornar a l'administració de clients",
         "client-detail": "Detall del Client",
         "name": "Nom",
-        "address": "Adreça",
+        "street": "Carrer",
+        "number": "Numero",
+        "city": "Ciudad",
+        "zip": "Codi postal",
+        "country": "Pais",
         "cif": "CIF",
         "buttons": {
             "delete": "Esborrar",

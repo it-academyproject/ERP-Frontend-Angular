@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
 import { NgbPaginationEllipsis } from '@ng-bootstrap/ng-bootstrap';
+import { findIndex } from 'rxjs/operators';
 import { ClientsService } from 'src/app/Services/clients.service';
 import { Clients } from '../../../Models/clients';
 
@@ -19,6 +20,7 @@ export class ClientListComponent implements OnInit {
   totalPages: number;
   pageToGo: number;
   pagesArray: Array<number>;
+  id: string;
 
   constructor(private clientsService: ClientsService,
               private router: Router) {
@@ -80,7 +82,7 @@ export class ClientListComponent implements OnInit {
       this.pageToGo = null;
 
     });
-      return false;
+    return false;
   }
 
   getTotalPages(totalClients: number, clientsPerPage: number) :number {
@@ -106,14 +108,15 @@ export class ClientListComponent implements OnInit {
 
   numSequence(n: number): Array<number> {
     return Array(n);
-}
+  }
 
   //Función eliminar un cliente
   delete(i: number) {
-    // const id = this.clients[i].id;
 
-    // this.clientsService.deleteClient(id)
-    //   .subscribe();
-    // this.clients.splice(i, 1);
+    this.id = this.clients[i].id;
+    this.clientsService.deleteClient(this.id)
+      .subscribe();
+      this.clients.splice(i, 1);
+
   }
 }

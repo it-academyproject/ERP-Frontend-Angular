@@ -1,8 +1,8 @@
-<!-- 
+<!--
 ==================================================================================================================
   PENDING WORK:
 - Client Image Update
-- Orders Section 
+- Orders Section
 ==================================================================================================================
 -->
 
@@ -35,24 +35,92 @@
                    formControlName="name"
                    [class.is-invalid]="isNameInvalid"
                    autofocus />
-            <div *ngIf="isNameInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+            <div *ngIf="isNameInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}{{client.name_and_surname }}</div>
           </div>
         </div>
 
-        <!-- Address -->
+        <!-- Street -->
         <div class="row mb-3">
           <div class="col-md-3">
-            <label for="clientAddress" class="col-form-label">{{ 'Client.address' | translate}}:</label>
+            <label for="street" class="col-form-label">{{ 'Client.street' | translate}}:</label>
           </div>
           <div class="col">
-            <input id="address"
-                   name="address"
+            <input id="street"
+                   name="street"
                    type="text"
                    class="form-control"
                    autocomplete="off"
-                   formControlName="address"
-                   [class.is-invalid]="isAddressInvalid" />
-            <div *ngIf="isAddressInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                   formControlName="street"
+                   [class.is-invalid]="isStreetInvalid" />
+            <div *ngIf="isStreetInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+          </div>
+        </div>
+
+        <!-- Number -->
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="number" class="col-form-label">{{ 'Client.number' | translate}}:</label>
+          </div>
+          <div class="col">
+            <input id="numbert"
+                   name="number"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   formControlName="number"
+                   [class.is-invalid]="isNumberInvalid" />
+            <div *ngIf="isNumberInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+          </div>
+        </div>
+
+        <!--City-->
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="city" class="col-form-label">{{ 'Client.city' | translate}}:</label>
+          </div>
+          <div class="col">
+            <input id="city"
+                  name="city"
+                  type="text"
+                  class="form-control"
+                  autocomplete="off"
+                  formControlName="city"
+                  [class.is-invalid]="isCityInvalid" />
+            <div *ngIf="isCityInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+          </div>
+        </div>
+
+        <!-- Zip code -->
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="zip" class="col-form-label">{{ 'Client.zip' | translate}}:</label>
+          </div>
+          <div class="col">
+            <input id="zip"
+                   name="zip"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   formControlName="zip"
+                   [class.is-invalid]="isZipInvalid" />
+            <div *ngIf="isZipInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+          </div>
+        </div>
+
+         <!--Country-->
+         <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="country" class="col-form-label">{{ 'Client.country' | translate}}:</label>
+          </div>
+          <div class="col">
+            <input id="country"
+                  name="country"
+                  type="text"
+                  class="form-control"
+                  autocomplete="off"
+                  formControlName="country"
+                  [class.is-invalid]="isCountryInvalid" />
+            <div *ngIf="isCountryInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
           </div>
         </div>
 
@@ -90,8 +158,10 @@
 
         <div class="row py-2">
           <div class="col-7 d-flex justify-content-center">
+            <!--Delete Button-->
             <button type="button" class="btn btn-erp-red text-erp-white me-3" data-bs-toggle="modal"
                     data-bs-target="#deleteModal">{{ 'Client.buttons.delete' | translate}}</button>
+            <!--Edit Button-->
             <button type="submit" class="btn btn-erp-blue text-erp-white me-3">{{ 'Client.buttons.save' |
               translate}}</button>
           </div>
