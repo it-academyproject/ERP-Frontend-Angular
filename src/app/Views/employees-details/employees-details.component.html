@@ -1,0 +1,110 @@
+<div class="container mt-5">
+  <div class="col">
+    <nav class="navbar navbar-light m-4">
+      <div class="container-fluid">
+        <span></span>
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search Employee"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <div class="card mb-4">
+    <div class="card-body">
+      <span class="h3"> Employee Details </span>
+      <div class="col-sm-12 d-flex justify-content-end">
+        <a [routerLink]="['/employees']">New Employee</a>
+      </div>
+
+      <table class="table mt-5">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Fecha de Alta</th>
+            <th>Activo</th>
+            <th>Control Horarios</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ff2961fa-15b0-4205-98b5-d4eb757e3634</td>
+            <td>Jane</td>
+            <td>Doe</td>
+            <td>15/09/2008</td>
+            <td>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+              <label class="form-check-label" for="defaultCheck1"> </label>
+            </td>
+            <td>
+              <button
+                (click)="goWorkingHours()"
+                class="btn btn-primary float-rigth"
+              >
+                Ver
+              </button>
+            </td>
+          </tr>
+          <tr class="m-2">
+            <td>ff2961fa-15b0-4205-98b5-d4eb757e3634</td>
+            <td>Roman</td>
+            <td>Ortiz</td>
+            <td>15/09/2021</td>
+            <td>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+              <label class="form-check-label" for="defaultCheck1"> </label>
+            </td>
+            <td>
+              <button
+                (click)="goWorkingHours()"
+                class="btn btn-primary float-rigth"
+              >
+                Ver
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>ff2961fa-15b0-4205-98b5-d4eb757e3634</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>15/09/2001</td>
+            <td>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+              <label class="form-check-label" for="defaultCheck1"> </label>
+            </td>
+            <td>
+              <button
+                (click)="goWorkingHours()"
+                class="btn btn-primary float-rigth"
+              >
+                Ver
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

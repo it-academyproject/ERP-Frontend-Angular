@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { AuthGuard } from './Guards/auth.guard';
 
@@ -27,10 +27,12 @@ import { OrdersComponent } from './Views/orders/orders.component';
 // Employees import
 import { EmployeesListComponent } from './Views/employees/employees-list/employees-list.component';
 import { EmployeeComponent } from './Views/employees/employee/employee.component';
+import { EmployeesDetailsComponent } from './Views/employees-details/employees-details.component';
 
 // Stats import
 import { StatsComponent } from './Views/stats/stats.component';
 import { ClientContactComponent } from './Views/client-contact/client-contact.component';
+import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -65,6 +67,16 @@ const routes: Routes = [
   {
     path: 'employees-list',
     component: EmployeesListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'employees-details',
+    component: EmployeesDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'working-hours',
+    component: WorkingHoursComponent,
     canActivate: [AuthGuard],
   },
   { path: 'employee/:id', component: EmployeeComponent },

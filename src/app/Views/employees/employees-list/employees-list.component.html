@@ -41,7 +41,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let employee of employees; let i = index">
-          <td>
+          <td (click)="goEmployeesDetails()">
             {{ employee.dni }}
           </td>
           <td>

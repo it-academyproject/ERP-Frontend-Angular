@@ -81,6 +81,7 @@ export class EmployeesListComponent implements OnInit {
       (err) => {
         console.log(err);
       };
+
     /*this.employeesService.getAllEmployees()
       .subscribe((data: any) => {
 
@@ -138,5 +139,8 @@ export class EmployeesListComponent implements OnInit {
 
     this.employeesService.deleteEmployee(id).subscribe();
     this.employees.splice(i, 1);
+  }
+  goEmployeesDetails() {
+    this.router.navigateByUrl('employees-details');
   }
 }

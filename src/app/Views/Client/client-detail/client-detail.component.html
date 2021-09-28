@@ -1,138 +1,188 @@
-<!-- 
+<!--
 ==================================================================================================================
   PENDING WORK:
 - Client Image Update
-- Orders Section 
+- Orders Section
 ==================================================================================================================
 -->
 
 <div class="container">
   <div class="row py-5">
     <div class="col-sm-12 d-flex justify-content-end">
-      <a [routerLink]="['/client-list']">{{ 'Client.back-to-client-list' | translate}}</a>
+      <a [routerLink]="['/client-list']">{{
+        "Client.back-to-client-list" | translate
+      }}</a>
     </div>
   </div>
 
-  <h4 class="text-center pb-5">{{ 'Client.client-detail' | translate}}</h4>
-
+  <h4 class="text-center pb-5">{{ "Client.client-detail" | translate }}</h4>
+  <div class="col-sm-12 d-flex justify-content-end">
+    <a [routerLink]="['/client-list']">{{
+      "Client.back-to-client-list" | translate
+    }}</a>
+  </div>
   <div class="row mb-3">
     <!-- Client fields -->
     <div class="col-md-6">
-      <form method="post" role="form" class="php-email-form" autocomplete="off"
-            [formGroup]='form'
-            (ngSubmit)="submit()">
+      <form
+        method="post"
+        role="form"
+        class="php-email-form"
+        autocomplete="off"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+      >
         <!-- Name -->
         <div class="row mb-3">
           <div class="col-md-3">
-            <label for="name" class="col-form-label">{{ 'Client.name' | translate}}:</label>
+            <label for="name" class="col-form-label"
+              >{{ "Client.name" | translate }}:</label
+            >
           </div>
           <div class="col">
-            <input id="name"
-                   name="name"
-                   type="text"
-                   class="form-control"
-                   autocomplete="off"
-                   formControlName="name"
-                   [class.is-invalid]="isNameInvalid"
-                   autofocus />
-            <div *ngIf="isNameInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="form-control"
+              autocomplete="off"
+              formControlName="name"
+              [class.is-invalid]="isNameInvalid"
+              autofocus
+            />
+            <div *ngIf="isNameInvalid" class="invalid-feedback">
+              {{ "Validation.required-field" | translate }}
+            </div>
           </div>
         </div>
 
         <!-- Address -->
         <div class="row mb-3">
           <div class="col-md-3">
-            <label for="clientAddress" class="col-form-label">{{ 'Client.address' | translate}}:</label>
+            <label for="clientAddress" class="col-form-label"
+              >{{ "Client.address" | translate }}:</label
+            >
           </div>
           <div class="col">
-            <input id="address"
-                   name="address"
-                   type="text"
-                   class="form-control"
-                   autocomplete="off"
-                   formControlName="address"
-                   [class.is-invalid]="isAddressInvalid" />
-            <div *ngIf="isAddressInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              class="form-control"
+              autocomplete="off"
+              formControlName="address"
+              [class.is-invalid]="isAddressInvalid"
+            />
+            <div *ngIf="isAddressInvalid" class="invalid-feedback">
+              {{ "Validation.required-field" | translate }}
+            </div>
           </div>
         </div>
 
         <!-- CIF -->
         <div class="row mb-3">
           <div class="col-md-3">
-            <label for="clientCif" class="col-form-label">{{ 'Client.cif' | translate}}:</label>
+            <label for="clientCif" class="col-form-label"
+              >{{ "Client.cif" | translate }}:</label
+            >
           </div>
           <div class="col">
-            <input id="cif"
-                   name="cif"
-                   type="text"
-                   class="form-control"
-                   autocomplete="off"
-                   formControlName="cif"
-                   [class.is-invalid]="isCIFInvalid" />
-            <div *ngIf="isCIFInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+            <input
+              id="cif"
+              name="cif"
+              type="text"
+              class="form-control"
+              autocomplete="off"
+              formControlName="cif"
+              [class.is-invalid]="isCIFInvalid"
+            />
+            <div *ngIf="isCIFInvalid" class="invalid-feedback">
+              {{ "Validation.required-field" | translate }}
+            </div>
           </div>
         </div>
 
         <!-- SERVER RESPONSE ALERT (copied from login page) -->
-        <div *ngIf="showAlert"
-             class="mb-3 mx-auto text-center border rounded-3"
-             [ngClass]="{
-                'border-erp-darkgreen': success,
-                'text-erp-darkgreen': success,
-                'bg-erp-palegreen': success,
-                'border-erp-firebrick ': !success,
-                'text-erp-firebrick ': !success,
-                'bg-erp-pink': !success
-              }">
+        <div
+          *ngIf="showAlert"
+          class="mb-3 mx-auto text-center border rounded-3"
+          [ngClass]="{
+            'border-erp-darkgreen': success,
+            'text-erp-darkgreen': success,
+            'bg-erp-palegreen': success,
+            'border-erp-firebrick ': !success,
+            'text-erp-firebrick ': !success,
+            'bg-erp-pink': !success
+          }"
+        >
           <small>{{ alertMessage }}</small>
         </div>
 
-
         <div class="row py-2">
           <div class="col-7 d-flex justify-content-center">
-            <button type="button" class="btn btn-erp-red text-erp-white me-3" data-bs-toggle="modal"
-                    data-bs-target="#deleteModal">{{ 'Client.buttons.delete' | translate}}</button>
-            <button type="submit" class="btn btn-erp-blue text-erp-white me-3">{{ 'Client.buttons.save' |
-              translate}}</button>
+            <button
+              type="button"
+              class="btn btn-erp-red text-erp-white me-3"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteModal"
+            >
+              {{ "Client.buttons.delete" | translate }}
+            </button>
+            <button type="submit" class="btn btn-erp-blue text-erp-white me-3">
+              {{ "Client.buttons.save" | translate }}
+            </button>
           </div>
         </div>
       </form>
-    </div><!-- /.col-md-6 -->
+    </div>
+    <!-- /.col-md-6 -->
 
     <!-- Client image -->
     <div class="col-md-6 text-center">
-      <img src="assets/images/mockup-portrait.jpg"
-           class="img-responsive rounded client-avatar">
+      <img
+        src="assets/images/mockup-portrait.jpg"
+        class="img-responsive rounded client-avatar"
+      />
       <i class="fas fa-edit mx-2 client-avatar-edit-button"></i>
     </div>
-  </div><!-- /.row -->
-
+  </div>
+  <!-- /.row -->
 
   <!-- Modal - Delete Confirmation -->
-  <div class="modal fade"
-       id="deleteModal"
-       tabindex="-1"
-       aria-hidden="true">
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            {{ 'Client.modal.delete.title' | translate }}
+            {{ "Client.modal.delete.title" | translate }}
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
 
         <div class="modal-body">
-          {{ 'Client.modal.delete.message' | translate }}
+          {{ "Client.modal.delete.message" | translate }}
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn appButton text-uppercase" data-bs-dismiss="modal">
-            {{ 'Client.modal.delete.button-no' | translate }}
+          <button
+            type="button"
+            class="btn appButton text-uppercase"
+            data-bs-dismiss="modal"
+          >
+            {{ "Client.modal.delete.button-no" | translate }}
           </button>
-          <button type="button" class="btn btn-primary deleteButton text-uppercase" (click)="deleteClient()"
-                  data-bs-dismiss="modal">
-            {{ 'Client.modal.delete.button-delete' | translate }}
+          <button
+            type="button"
+            class="btn btn-primary deleteButton text-uppercase"
+            (click)="deleteClient()"
+            data-bs-dismiss="modal"
+          >
+            {{ "Client.modal.delete.button-delete" | translate }}
           </button>
         </div>
       </div>
@@ -168,5 +218,4 @@
       </tbody>
     </table>
   </div>
-
 </div>
