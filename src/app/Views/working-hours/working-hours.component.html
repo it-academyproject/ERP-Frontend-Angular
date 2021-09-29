@@ -4,13 +4,15 @@
       <span class="h3">Working Hours</span>
       <hr />
       <span>Jane Doe</span>
-
+      <div class="col-sm-12 d-flex justify-content-end">
+        <a [routerLink]="['/employees-list']">Back Employee</a>
+      </div>
       <table class="table table-hover mt-5 p-2">
         <thead>
           <tr>
-            <th>Fecha</th>
-            <th>Inicio</th>
-            <th>Final</th>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
             <th>Total</th>
           </tr>
         </thead>
