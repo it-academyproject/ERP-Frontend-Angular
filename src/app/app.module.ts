@@ -41,7 +41,6 @@ import { OrdersComponent } from './views/orders/orders.component';
 import { StatsComponent } from './views/stats/stats.component';
 import { EmployeeComponent } from './views/employees/employee/employee.component';
 import { EmployeesListComponent } from './views/employees/employees-list/employees-list.component';
-import { EmployeesDetailsComponent } from './Views/employees-details/employees-details.component';
 import { ProductsWithoutSessionComponent } from './Views/Product/products-without-session/products-without-session.component';
 import { ShoppingCartComponent } from './Components/header/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './Views/checkout/checkout/checkout.component';
@@ -98,7 +97,6 @@ registerLocaleData(localeESP);
     ClientContactComponent,
     ProfileComponent,
     WorkingHoursComponent,
-    EmployeesDetailsComponent,
   ],
 
   imports: [

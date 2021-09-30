@@ -183,6 +183,8 @@
       "head-name": "Nombre",
       "head-total-sellings": "Ventas Totales",
       "head-orders-attended": "# Pedidos Atendidos",
+      "head-start-date": "Fecha de Inicio",
+      "head-state": "Estado",
       "head-options": "Opciones"
     },
     "modal": {

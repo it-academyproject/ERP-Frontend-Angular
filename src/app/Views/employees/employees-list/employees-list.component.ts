@@ -1,6 +1,10 @@
 import { I_Employee } from './../../../Models/employee';
 import { Component, OnInit } from '@angular/core';
-import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
+import {
+  faTrashAlt,
+  faEdit,
+  faCalendarAlt,
+} from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { EmployeesService } from '../../../Services/employees.service';
 
@@ -13,6 +17,8 @@ export class EmployeesListComponent implements OnInit {
   //Icons
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
+  faCalendarAlt = faCalendarAlt;
+  inDate: boolean = true;
   employees: any[];
   currentPage: number;
   totalPages: number;
@@ -29,17 +35,20 @@ export class EmployeesListComponent implements OnInit {
   ngOnInit(): void {
     this.goToPage(this.currentPage);
 
-    /*this.employeesService.getAllEmployees().subscribe(resp=>{
-      this.employees = resp.employees;
+    this.employeesService.getAllEmployees().subscribe((resp) => {
+      // this.employees = resp.employees;
       console.log(resp.employees);
-    });*/
+    });
   }
 
   //Función para que se abra la página de single Employee
   goEditEmployee(id: string) {
     this.router.navigate(['/employee', id]);
   }
-
+  //Funcion para que se abr la página Working-hours
+  goWorkingHours() {
+    this.router.navigateByUrl('working-hours');
+  }
   isLastPage() {
     return this.currentPage == this.totalPages;
   }
@@ -140,7 +149,8 @@ export class EmployeesListComponent implements OnInit {
     this.employeesService.deleteEmployee(id).subscribe();
     this.employees.splice(i, 1);
   }
-  goEmployeesDetails() {
-    this.router.navigateByUrl('employees-details');
+
+  state(i: number) {
+    this.inDate = this.inDate;
   }
 }

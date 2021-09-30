@@ -27,7 +27,6 @@ import { OrdersComponent } from './Views/orders/orders.component';
 // Employees import
 import { EmployeesListComponent } from './Views/employees/employees-list/employees-list.component';
 import { EmployeeComponent } from './Views/employees/employee/employee.component';
-import { EmployeesDetailsComponent } from './Views/employees-details/employees-details.component';
 
 // Stats import
 import { StatsComponent } from './Views/stats/stats.component';
@@ -67,11 +66,6 @@ const routes: Routes = [
   {
     path: 'employees-list',
     component: EmployeesListComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'employees-details',
-    component: EmployeesDetailsComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -183,6 +183,8 @@
       "head-name": "Nom",
       "head-total-sellings": "Vendes Totals",
       "head-orders-attended": "# Comandes Ateses",
+      "head-start-date": "Data d'inici",
+      "head-state": "Estat",
       "head-options": "Opcions"
     },
     "modal": {

@@ -183,6 +183,8 @@
       "head-name": "Name",
       "head-total-sellings": "Total Sellings",
       "head-orders-attended": "# Orders Attended",
+      "head-start-date": "Start Date",
+      "head-state": "State",
       "head-options": "Options"
     },
     "modal": {

@@ -86,7 +86,10 @@ export class AppComponent implements OnInit, DoCheck {
   token = ''; // <-- log in OK
   role = ''; // <-- log in OK
 
-  constructor(private loginService: LoginService, private translateService: TranslateService) {
+  constructor(
+    private loginService: LoginService,
+    private translateService: TranslateService
+  ) {
     this.mode = environment.mode;
     this.translateService.setDefaultLang('en'); //fallback set of translations to use in case there are missing translations for the current language.
     this.translateService.use('en'); //tells the service which is the current language to use for translations.
@@ -121,7 +124,7 @@ export class AppComponent implements OnInit, DoCheck {
       faEdit,
       faEnvelope,
       faPhone,
-      faPercentage,
+      faPercentage
     );
     dom.watch(); // Replace any existing <i> tags with <svg> icon
 
@@ -134,7 +137,9 @@ export class AppComponent implements OnInit, DoCheck {
     //                    and If we have it in Browser, we save it in App
     if (this.loginService.getToken === undefined) {
       if (sessionStorage.getItem(this.loginService.APIresName)) {
-        this.loginService.saveSession(JSON.parse(sessionStorage.getItem(this.loginService.APIresName)));
+        this.loginService.saveSession(
+          JSON.parse(sessionStorage.getItem(this.loginService.APIresName))
+        );
       }
     }
     // INFO: 03/03/2021 - Get the token
