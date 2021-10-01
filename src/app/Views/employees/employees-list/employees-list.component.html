@@ -4,13 +4,19 @@
   <div class="row mb-5">
     <div class="col-sm-12 d-inline-flex justify-content-end">
       <div class="col-sm-3 me-4">
-        <input
-          class="form-control me-4 rounded-pill"
-          type="search"
-          placeholder="{{ 'Search.searchph' | translate }} ..."
-          aria-label="Search"
-        />
+        <form (ngSubmit)="search()" autocomplete="off">
+          <input
+            class="form-control me-4 rounded-pill"
+            name="term"
+            class="form-control"
+            [(ngModel)]="term"
+            type="search"
+            placeholder="{{ 'Search.searchph' | translate }} ..."
+            aria-label="Search"
+          />
+        </form>
       </div>
+
       <button
         (click)="goEditEmployee('new')"
         class="btn btn-erp-blue text-erp-white"
@@ -20,30 +26,42 @@
       </button>
     </div>
   </div>
+  <div *ngIf="errorAPI"
+  class="alert alert-danger">  
+    Employee not found. The id {{ term }} doesn't exist
+  </div>
 
   <!-- Employees data -->
   <div class="table-responsive mb-5">
-    <table class="table align-middle">
+    <table class="table table-hover align-middle">
       <thead>
         <tr>
-          <!-- <th class="text-center" scope="col ">
+          <th (click)="orderBy('id')" class="text-center" scope="col ">
             {{ "Employees-list.list.head-id" | translate }}
-          </th> -->
-          <th class="text-center" scope="col ">
+          </th>
+          <th (click)="orderBy('name')" class="text-center" scope="col ">
             {{ "Employees-list.list.head-name" | translate }}
           </th>
-          <th class="text-center" scope="col ">
+          <th
+            (click)="orderBy('total-sellings')"
+            class="text-center"
+            scope="col "
+          >
             {{ "Employees-list.list.head-total-sellings" | translate }}
           </th>
-          <th class="text-center" scope="col ">
+          <th
+            (click)="orderBy('orders-attended')"
+            class="text-center"
+            scope="col "
+          >
             {{ "Employees-list.list.head-orders-attended" | translate }}
           </th>
 
-          <th class="text-center">
+          <th (click)="orderBy('start-date')" class="text-center">
             {{ "Employees-list.list.head-start-date" | translate }}
           </th>
 
-          <th class="text-center">
+          <th (click)="orderBy('state')" class="text-center">
             {{ "Employees-list.list.head-state" | translate }}
           </th>
 
@@ -53,10 +71,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees; let i = index">
-          <!-- <td>
-            {{ employee.dni }}
-          </td> -->
+        <tr *ngFor="let employee of employees | sort: order; let i = index">
+          <td>
+            {{ employee.id }}
+          </td>
           <td>{{ employee.name }} {{ employee.surname }}</td>
           <td>
             {{ employee.total_sales }}
@@ -74,10 +92,8 @@
                 name="flexRadioDefault"
                 id="inlineRadio1"
                 value="option1"
+                checked
               />
-              <label class="form-check-label" for="inlineRadio1">{{
-                employee.in_date
-              }}</label>
             </div>
 
             <!-- <td>

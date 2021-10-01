@@ -5,8 +5,10 @@ import {
   faEdit,
   faCalendarAlt,
 } from '@fortawesome/free-regular-svg-icons';
-import { Router } from '@angular/router';
+import { ActivationEnd, Router } from '@angular/router';
 import { EmployeesService } from '../../../Services/employees.service';
+import { State } from '../../../Models/countries';
+import { ActionSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-employees-list',
@@ -18,12 +20,16 @@ export class EmployeesListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
   faCalendarAlt = faCalendarAlt;
-  inDate: boolean = true;
+  in_date: number;
   employees: any[];
   currentPage: number;
   totalPages: number;
   pageToGo: number;
   pagesArray: Array<number>;
+  order: string = '';
+  term: string = '';
+  errorAPI: boolean = false;
+ 
 
   constructor(
     private employeesService: EmployeesService,
@@ -149,8 +155,40 @@ export class EmployeesListComponent implements OnInit {
     this.employeesService.deleteEmployee(id).subscribe();
     this.employees.splice(i, 1);
   }
+  //Función para Buscar Empleado por Id
+  search() {
+    // console.log(this.term);
+    this.errorAPI = false;
+    this.employeesService.searchTerm(this.term)
+    .subscribe(
+      (resp) => {
+        console.log(resp);
+          
+      },
+      (err) => {
+        // console.log('Error');
+        this.errorAPI = true;
+        console.log(err);
+      });
+  }
 
-  state(i: number) {
-    this.inDate = this.inDate;
+  //Funcion para ordenar la lista
+  orderBy(valor: string) {
+    this.order = valor;
+    console.log(valor);
+  }
+
+  state(activ: true) {
+    {
+      return;
+    }
+
+    return;
   }
 }
+
+
+
+
+
+
