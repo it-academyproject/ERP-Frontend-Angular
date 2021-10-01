@@ -51,6 +51,7 @@ import { ProfileComponent } from './Views/profile/profile.component';
 import { NoProductImagePipe } from './pipes/no-product-image.pipe';
 import { OrderReviewComponent } from './Views/checkout/order-review/order-review.component';
 import { BillingInformationComponent } from './Views/checkout/billing-information/billing-information.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -97,6 +98,7 @@ registerLocaleData(localeESP);
     ClientContactComponent,
     ProfileComponent,
     WorkingHoursComponent,
+    SortPipe,
   ],
 
   imports: [

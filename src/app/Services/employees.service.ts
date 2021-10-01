@@ -32,6 +32,8 @@ export class EmployeesService {
     );
   }
 
+  // const urlSearch = `${this.url}${this.endPoint}/id/${term}`;
+  // return this.httpClient.get<ReqResponseEmployees>(urlSearch);
   getEmployees(amount: number, page: number) {
     const headers = new HttpHeaders({
       Authorization: this.token,
@@ -49,6 +51,18 @@ export class EmployeesService {
     return this.httpClient.get(`${this.url}${this.endPoint}/${id}`, {
       headers,
     });
+  }
+
+  searchTerm(id: string): Observable<ReqResponseEmployees> {
+    const headers = new HttpHeaders({
+      Authorization: this.token,
+    });
+    return this.httpClient.get<ReqResponseEmployees>(
+      `${this.url}${this.endPoint}/${id}`,
+      {
+        headers,
+      }
+    );
   }
 
   updateEmployee(employee) {
