@@ -5,7 +5,7 @@ import { I_Employee } from '../Models/employee';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-  transform(employees: I_Employee[], order: string = 'name'): I_Employee[] {
+  transform(employees: I_Employee[], order: string): I_Employee[] {
     switch (order) {
       case 'id':
         return (employees = employees.sort((a, b) => (a.id > b.id ? 1 : -1)));

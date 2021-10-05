@@ -39,8 +39,10 @@ import { DevNavbarComponent } from './Components/dev-navbar/dev-navbar.component
 import { RoleSidebarComponent } from './Components/role-sidebar/role-sidebar.component';
 import { OrdersComponent } from './views/orders/orders.component';
 import { StatsComponent } from './views/stats/stats.component';
+import { SearchComponent } from './Views/employees/search/search.component';
 import { EmployeeComponent } from './views/employees/employee/employee.component';
 import { EmployeesListComponent } from './views/employees/employees-list/employees-list.component';
+import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
 import { ProductsWithoutSessionComponent } from './Views/Product/products-without-session/products-without-session.component';
 import { ShoppingCartComponent } from './Components/header/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './Views/checkout/checkout/checkout.component';
@@ -51,7 +53,8 @@ import { ProfileComponent } from './Views/profile/profile.component';
 import { NoProductImagePipe } from './pipes/no-product-image.pipe';
 import { OrderReviewComponent } from './Views/checkout/order-review/order-review.component';
 import { BillingInformationComponent } from './Views/checkout/billing-information/billing-information.component';
-import { SortPipe } from './pipes/sort.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ValuesPipe } from './pipes/values.pipe';
 
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -59,7 +62,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // popUps UI/UX answers
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 registerLocaleData(localeESP);
 
@@ -98,7 +101,10 @@ registerLocaleData(localeESP);
     ClientContactComponent,
     ProfileComponent,
     WorkingHoursComponent,
+    FilterPipe,
     SortPipe,
+    ValuesPipe,
+    SearchComponent,
   ],
 
   imports: [
@@ -128,6 +134,7 @@ registerLocaleData(localeESP);
     NgxPaginationModule,
   ],
   exports: [TranslateModule],
+
   providers: [
     {
       provide: LOCALE_ID,

@@ -64,7 +64,6 @@ export class EmployeesService {
       }
     );
   }
-
   updateEmployee(employee) {
     const headers = new HttpHeaders({
       Authorization: this.token,

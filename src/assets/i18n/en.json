@@ -1,6 +1,6 @@
 {
   "Search": {
-    "searchph": "search"
+    "seasearchph for name": "searchph for name"
   },
   "Header": {
     "notifications": {
@@ -184,7 +184,7 @@
       "head-total-sellings": "Total Sellings",
       "head-orders-attended": "# Orders Attended",
       "head-start-date": "Start Date",
-      "head-state": "State",
+      "head-status": "Status",
       "head-options": "Options"
     },
     "modal": {

@@ -3,6 +3,7 @@
     <div class="card-body">
       <span class="h3">Working Hours</span>
       <hr />
+
       <span>Jane Doe</span>
       <div class="col-sm-12 d-flex justify-content-end">
         <a [routerLink]="['/employees-list']">Back Employee</a>
@@ -16,7 +17,14 @@
             <th>Total</th>
           </tr>
         </thead>
+
         <tbody>
+          <!-- <tr *ngFor="let item of WorkingHours | keyvalue; let i = index">
+            <td>{{ item.key }}:{{ item.value }}</td>
+            <td>{{ item.date }}:{{item.[0]</td>
+            <td>{{ item | json }}</td>
+            <td>{{ item | json }}</td>
+          </tr> -->
           <tr>
             <td>2021/06/19</td>
             <td>07:00:00</td>
@@ -28,12 +36,6 @@
             <td>06:00:00</td>
             <td>15:00:00</td>
             <td>7h</td>
-          </tr>
-          <tr>
-            <td>2021/06/15</td>
-            <td>09:00:00</td>
-            <td>18:00:00</td>
-            <td>8h</td>
           </tr>
         </tbody>
       </table>

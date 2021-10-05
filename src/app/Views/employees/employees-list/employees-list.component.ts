@@ -7,8 +7,8 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { ActivationEnd, Router } from '@angular/router';
 import { EmployeesService } from '../../../Services/employees.service';
-import { State } from '../../../Models/countries';
 import { ActionSequence } from 'selenium-webdriver';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-employees-list',
@@ -20,7 +20,7 @@ export class EmployeesListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
   faCalendarAlt = faCalendarAlt;
-  in_date: number;
+  faSort = faSort;
   employees: any[];
   currentPage: number;
   totalPages: number;
@@ -29,7 +29,7 @@ export class EmployeesListComponent implements OnInit {
   order: string = '';
   term: string = '';
   errorAPI: boolean = false;
- 
+  in_date: number;
 
   constructor(
     private employeesService: EmployeesService,
@@ -151,44 +151,35 @@ export class EmployeesListComponent implements OnInit {
   }
   delete(i: number) {
     const id = this.employees[i].id;
-
     this.employeesService.deleteEmployee(id).subscribe();
     this.employees.splice(i, 1);
   }
-  //Función para Buscar Empleado por Id
+  //Función para Buscar Empleado por Id // aquí añado un pipe.map para devolver otro array
+
   search() {
-    // console.log(this.term);
     this.errorAPI = false;
-    this.employeesService.searchTerm(this.term)
-    .subscribe(
+    this.employeesService.searchTerm(this.term).subscribe(
       (resp) => {
-        console.log(resp);
-          
+        console.log('resp', resp);
+        // this.employees.filter((employees) => {
+        //   return;
+        // });
       },
       (err) => {
-        // console.log('Error');
         this.errorAPI = true;
         console.log(err);
-      });
+      }
+    );
   }
 
   //Funcion para ordenar la lista
+
   orderBy(valor: string) {
     this.order = valor;
     console.log(valor);
   }
 
-  state(activ: true) {
-    {
-      return;
-    }
-
-    return;
+  onChecked(obj: any, isChecked: boolean) {
+    console.log(obj, isChecked); // {}true || false
   }
 }
-
-
-
-
-
-

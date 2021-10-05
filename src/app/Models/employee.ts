@@ -5,6 +5,8 @@ export interface I_Employee {
   salary: string;
   dni: string;
   totalSellings: string;
+  in_date?: string;
+  status?: boolean;
   phone: string;
   ordersAttended: string;
   ordersAssigned: string;

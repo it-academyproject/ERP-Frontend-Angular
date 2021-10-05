@@ -1,6 +1,6 @@
 {
   "Search": {
-    "searchph": "buscar"
+    "searchph for name": "buscar por Nombre"
   },
   "Header": {
     "notifications": {
@@ -184,7 +184,7 @@
       "head-total-sellings": "Ventas Totales",
       "head-orders-attended": "# Pedidos Atendidos",
       "head-start-date": "Fecha de Inicio",
-      "head-state": "Estado",
+      "head-status": "Estado",
       "head-options": "Opciones"
     },
     "modal": {

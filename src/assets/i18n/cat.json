@@ -1,6 +1,6 @@
 {
   "Search": {
-    "searchph": "cercar"
+    "searchph": "cercar per Nom"
   },
   "Header": {
     "notifications": {
@@ -184,7 +184,7 @@
       "head-total-sellings": "Vendes Totals",
       "head-orders-attended": "# Comandes Ateses",
       "head-start-date": "Data d'inici",
-      "head-state": "Estat",
+      "head-status": "Estat",
       "head-options": "Opcions"
     },
     "modal": {

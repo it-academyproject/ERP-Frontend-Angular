@@ -11,7 +11,7 @@
             class="form-control"
             [(ngModel)]="term"
             type="search"
-            placeholder="{{ 'Search.searchph' | translate }} ..."
+            placeholder="{{ 'searchph for name' | translate }} ..."
             aria-label="Search"
           />
         </form>
@@ -26,9 +26,9 @@
       </button>
     </div>
   </div>
-  <div *ngIf="errorAPI"
-  class="alert alert-danger">  
-    Employee not found. The id {{ term }} doesn't exist
+  <div *ngIf="errorAPI" class="alert alert-danger">
+    Employee not found ;(
+    <br />The Term: {{ term }} doesn't exist
   </div>
 
   <!-- Employees data -->
@@ -36,33 +36,39 @@
     <table class="table table-hover align-middle">
       <thead>
         <tr>
-          <th (click)="orderBy('id')" class="text-center" scope="col ">
+          <!-- <th class="text-start" scope="col ">
             {{ "Employees-list.list.head-id" | translate }}
-          </th>
-          <th (click)="orderBy('name')" class="text-center" scope="col ">
+            <fa-icon [icon]="faSort"></fa-icon>
+          </th> -->
+          <th (click)="orderBy('name')" class="text-start" scope="col ">
+            <fa-icon [icon]="faSort"></fa-icon>
             {{ "Employees-list.list.head-name" | translate }}
           </th>
           <th
             (click)="orderBy('total-sellings')"
-            class="text-center"
+            class="text-start"
             scope="col "
           >
             {{ "Employees-list.list.head-total-sellings" | translate }}
+            <fa-icon [icon]="faSort"></fa-icon>
           </th>
           <th
             (click)="orderBy('orders-attended')"
-            class="text-center"
+            class="text-start"
             scope="col "
           >
             {{ "Employees-list.list.head-orders-attended" | translate }}
+            <fa-icon [icon]="faSort"></fa-icon>
           </th>
 
-          <th (click)="orderBy('start-date')" class="text-center">
+          <th (click)="orderBy('start-date')" class="text-start">
             {{ "Employees-list.list.head-start-date" | translate }}
+            <fa-icon [icon]="faSort"></fa-icon>
           </th>
 
-          <th (click)="orderBy('state')" class="text-center">
-            {{ "Employees-list.list.head-state" | translate }}
+          <th (click)="orderBy('status')" class="text-start">
+            {{ "Employees-list.list.head-status" | translate }}
+            <fa-icon [icon]="faSort"></fa-icon>
           </th>
 
           <th class="text-center" scope="col-1">
@@ -71,10 +77,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees | sort: order; let i = index">
-          <td>
+        <tr
+          *ngFor="
+            let employee of employees | filter: term | sort: order;
+            let i = index
+          "
+        >
+          <!-- <td>
             {{ employee.id }}
-          </td>
+          </td> -->
           <td>{{ employee.name }} {{ employee.surname }}</td>
           <td>
             {{ employee.total_sales }}
@@ -85,33 +96,15 @@
 
           <td>{{ employee.in_date }}</td>
           <td>
-            <div class="form-check form-check-inline m-2">
+            <div class="form-check">
               <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="inlineRadio1"
-                value="option1"
-                checked
+                type="checkbox"
+                ngModel
+                (ngModelChange)="onCheked(obj, $event)"
               />
             </div>
 
-            <!-- <td>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="option2"
-                />
-                <label class="form-check-label" for="inlineRadio2"
-                  >Inactivo</label
-                >
-              </div>
-            </td>
-          </td>
-          <!-- Edit/Delete -->
+            <!-- Edit/Delete -->
           </td>
 
           <td class="pr-td p-0">
