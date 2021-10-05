@@ -10,13 +10,14 @@ import { ValuesPipe } from 'src/app/pipes/values.pipe';
 })
 export class WorkingHoursComponent implements OnInit {
   WorkingHours: any[];
+  totalHours: number;
 
-  constructor(private workingHoursService: WorkingHoursService) {}
+  constructor(public workingHoursService: WorkingHoursService) {}
 
   ngOnInit(): void {
     this.workingHoursService.getAllWorkingHours().subscribe((resp: any) => {
-      this.WorkingHours = resp.object;
-      console.log('resp', resp);
+      this.WorkingHours = resp.working_hours;
+      console.log(resp.working_hours);
     });
   }
 }
