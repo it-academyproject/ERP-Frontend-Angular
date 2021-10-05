@@ -27,7 +27,7 @@ export class ProductsService {
     const headers = new HttpHeaders({
       //Authorization: this.token //removed to showing products without loggin
     });
-    return this.httpClient.get( `${this.url}${this.endPoint}`, {headers} );
+    return this.httpClient.get(`${this.url}${this.endPoint}`, { headers });
   }
 
   deleteProduct(id: number) {
@@ -47,11 +47,12 @@ export class ProductsService {
     const headers = new HttpHeaders({
       Authorization: this.token
     });
-    return this.httpClient.get(`${this.url}${this.endPoint}/${id}`, {headers});
+    return this.httpClient.get(`${this.url}${this.endPoint}/${id}`, { headers });
   }
 
-  updateProduct(id:number, name:string, stock:number, image:string, price:number) {
-    let body= new updateProductDto(id, name, stock, price, image);
+
+  updateProduct(id: number, name: string, stock: number, image: string, price: number) {
+    let body = new updateProductDto(id, name, stock, price, image);
 
     const options = {
       headers: new HttpHeaders({
@@ -61,15 +62,17 @@ export class ProductsService {
     return this.httpClient.put(`${this.url}${this.endPoint}`, body, options);
   }
 
-  addProduct(name:string, stock:number, image:string,  price:number) {
-    let body= new newProductDto(name, stock, price, image);
+  addProduct(name: string, stock: number, image: string, price: number) {
+    let body = new newProductDto(name, stock, price, image);
 
     const options = {
       headers: new HttpHeaders({
         Authorization: this.token
       })
     };
-    return this.httpClient.post(`${this.url}${this.endPoint}`, body, options) ;
+
+    return this.httpClient.post(`${this.url}${this.endPoint}`, body, options);
+
   }
 }
 
