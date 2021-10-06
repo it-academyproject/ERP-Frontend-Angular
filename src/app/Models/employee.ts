@@ -6,6 +6,7 @@ export interface I_Employee {
   dni: string;
   totalSellings: string;
   in_date?: string;
+  out_date?: string;
   status?: boolean;
   phone: string;
   ordersAttended: string;

@@ -7,9 +7,9 @@
         <form (ngSubmit)="search()" autocomplete="off">
           <input
             class="form-control me-4 rounded-pill"
-            name="term"
+            name="name"
             class="form-control"
-            [(ngModel)]="term"
+            [(ngModel)]="name"
             type="search"
             placeholder="{{ 'searchph for name' | translate }} ..."
             aria-label="Search"
@@ -26,13 +26,21 @@
       </button>
     </div>
   </div>
-  <div *ngIf="errorAPI" class="alert alert-danger">
-    Employee not found ;(
-    <br />The Term: {{ term }} doesn't exist
+  <div
+    *ngIf="errorAPI"
+    class="alert alert-danger alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>Employee not found!! </strong> The Term: {{ name }} doesn't exist.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
   </div>
-
   <!-- Employees data -->
-  <div class="table-responsive mb-5">
+  <div class="table-responsive mb-2">
     <table class="table table-hover align-middle">
       <thead>
         <tr>
@@ -79,7 +87,7 @@
       <tbody>
         <tr
           *ngFor="
-            let employee of employees | filter: term | sort: order;
+            let employee of employees | filter: name | sort: order;
             let i = index
           "
         >
@@ -98,10 +106,12 @@
           <td>
             <div class="form-check">
               <input
+                *ngIf="!employee.out_date === true"
                 type="checkbox"
-                ngModel
-                (ngModelChange)="onCheked(obj, $event)"
+                [(ngMode)]="employee.out_date"
+                checked="checked"
               />
+              Active
             </div>
 
             <!-- Edit/Delete -->
@@ -136,7 +146,11 @@
                 </fa-icon>
               </button>
               <!-- Show WorkingHours -->
-              <button (click)="goWorkingHours()" class="btn">
+              <button
+                [name]="nameEmployee"
+                (click)="goWorkingHours()"
+                class="btn"
+              >
                 <fa-icon
                   [icon]="faCalendarAlt"
                   size="lg"

@@ -4,7 +4,8 @@
       <span class="h3">Working Hours</span>
       <hr />
 
-      <span > </span>
+      <span *ngFor="let employee of employees; let i = index"></span>
+      <div>{{ employeesService.nameEmployee }}</div>
       <div class="col-sm-12 d-flex justify-content-end">
         <a [routerLink]="['/employees-list']">Back Employee</a>
       </div>
@@ -14,7 +15,7 @@
             <th>Date</th>
             <th>Start</th>
             <th>End</th>
-            <th>Total</th>
+            <th>Total Hours</th>
           </tr>
         </thead>
 
@@ -25,7 +26,7 @@
             </td>
             <td>{{ item.check_in[0] }} : {{ item.check_in[1] }}</td>
             <td>{{ item.check_out[0] }} :{{ item.check_out[1] }}</td>
-            <td>{{ item.check_out[0] }} - {{ item.check_in[0] }}</td>
+            <td>{{ item.check_out[0] - item.check_in[0] }} Hours</td>
           </tr>
         </tbody>
       </table>

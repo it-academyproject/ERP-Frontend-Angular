@@ -1,13 +1,12 @@
 import { I_Employee } from './../../../Models/employee';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   faTrashAlt,
   faEdit,
   faCalendarAlt,
 } from '@fortawesome/free-regular-svg-icons';
-import { ActivationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { EmployeesService } from '../../../Services/employees.service';
-import { ActionSequence } from 'selenium-webdriver';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -27,9 +26,9 @@ export class EmployeesListComponent implements OnInit {
   pageToGo: number;
   pagesArray: Array<number>;
   order: string = '';
-  term: string = '';
+  name: string = '';
   errorAPI: boolean = false;
-  in_date: number;
+  out_date: boolean = false;
 
   constructor(
     private employeesService: EmployeesService,
@@ -42,8 +41,8 @@ export class EmployeesListComponent implements OnInit {
     this.goToPage(this.currentPage);
 
     this.employeesService.getAllEmployees().subscribe((resp) => {
-      // this.employees = resp.employees;
-      console.log(resp.employees);
+      this.employees = resp.employees;
+      // console.log('resp', resp.employees);
     });
   }
 
@@ -53,6 +52,7 @@ export class EmployeesListComponent implements OnInit {
   }
   //Funcion para que se abr la página Working-hours
   goWorkingHours() {
+    this.name = 'Jane Doe';
     this.router.navigateByUrl('working-hours');
   }
   isLastPage() {
@@ -155,18 +155,18 @@ export class EmployeesListComponent implements OnInit {
     this.employees.splice(i, 1);
   }
   //Función para Buscar Empleado por Id // aquí añado un pipe.map para devolver otro array
-
   search() {
     this.errorAPI = false;
-    this.employeesService.searchTerm(this.term).subscribe(
-      (resp) => {
-        console.log('resp', resp);
-        // this.employees.filter((employees) => {
-        //   return;
-        // });
+    this.employeesService.searchTerm(this.name).subscribe(
+      (resp: any) => {
+        this.employees = resp.employee;
+        for (let i = 0; i > resp.employee; i++) {
+          console.log('resp', resp.employees[i].name);
+        }
       },
       (err) => {
         this.errorAPI = true;
+        this.employees = [];
         console.log(err);
       }
     );
@@ -177,9 +177,5 @@ export class EmployeesListComponent implements OnInit {
   orderBy(valor: string) {
     this.order = valor;
     console.log(valor);
-  }
-
-  onChecked(obj: any, isChecked: boolean) {
-    console.log(obj, isChecked); // {}true || false
   }
 }
