@@ -11,6 +11,7 @@ import { I_Employee } from '../../Models/employee';
 })
 export class EmployeesComponent implements OnInit {
   employees: I_Employee[];
+  inputName: string;
 
   constructor(
     private EmployeesService: EmployeesService,
