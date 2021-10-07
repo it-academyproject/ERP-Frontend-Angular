@@ -39,8 +39,6 @@ import { DevNavbarComponent } from './Components/dev-navbar/dev-navbar.component
 import { RoleSidebarComponent } from './Components/role-sidebar/role-sidebar.component';
 import { OrdersComponent } from './views/orders/orders.component';
 import { StatsComponent } from './views/stats/stats.component';
-import { SearchComponent } from './Views/employees/search/search.component';
-import { EmployeeComponent } from './views/employees/employee/employee.component';
 import { EmployeesListComponent } from './views/employees/employees-list/employees-list.component';
 import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
 import { ProductsWithoutSessionComponent } from './Views/Product/products-without-session/products-without-session.component';
@@ -54,7 +52,6 @@ import { NoProductImagePipe } from './pipes/no-product-image.pipe';
 import { OrderReviewComponent } from './Views/checkout/order-review/order-review.component';
 import { BillingInformationComponent } from './Views/checkout/billing-information/billing-information.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { ValuesPipe } from './pipes/values.pipe';
 
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -63,6 +60,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SortPipe } from './pipes/sort.pipe';
+import { EmployeeComponent } from './Views/employees/employee/employee.component';
 
 registerLocaleData(localeESP);
 
@@ -103,10 +101,7 @@ registerLocaleData(localeESP);
     WorkingHoursComponent,
     FilterPipe,
     SortPipe,
-    ValuesPipe,
-    SearchComponent,
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
