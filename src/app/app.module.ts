@@ -46,12 +46,15 @@ import { ShoppingCartComponent } from './Components/header/shopping-cart/shoppin
 import { CheckoutComponent } from './Views/checkout/checkout/checkout.component';
 import { ClientContactComponent } from './Views/client-contact/client-contact.component';
 import { ProfileComponent } from './Views/profile/profile.component';
+import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
 import { TermsComponent } from './Views/terms/terms.component';
 
 // Pipes
 import { NoProductImagePipe } from './pipes/no-product-image.pipe';
 import { OrderReviewComponent } from './Views/checkout/order-review/order-review.component';
 import { BillingInformationComponent } from './Views/checkout/billing-information/billing-information.component';
+import { SortPipe } from './pipes/sort.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -101,6 +104,9 @@ registerLocaleData(localeESP);
     CartItemComponent,
     ProductItemComponent,
     TermsComponent,
+    WorkingHoursComponent,
+    SortPipe,
+    FilterPipe,
   ],
 
   imports: [

@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="card m-5">
+    <div class="card-body">
+      <span class="h3">Working Hours</span>
+      <hr />
+
+      <span *ngFor="let employee of employees; let i = index"></span>
+      <div>{{ employeesService.nameEmployee }}</div>
+      <div class="col-sm-12 d-flex justify-content-end">
+        <a [routerLink]="['/employees-list']">Back Employee</a>
+      </div>
+      <table class="table table-hover mt-5 p-2">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Total Hours</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of WorkingHours; let i = index">
+            <td>
+              {{ item.date[0] }} / {{ item.date[1] }} / {{ item.date[2] }}
+            </td>
+            <td>{{ item.check_in[0] }} : {{ item.check_in[1] }}</td>
+            <td>{{ item.check_out[0] }} :{{ item.check_out[1] }}</td>
+            <td>{{ item.check_out[0] - item.check_in[0] }} Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,7 @@ import { EmployeeComponent } from './Views/employees/employee/employee.component
 // Stats import
 import { StatsComponent } from './Views/stats/stats.component';
 import { ClientContactComponent } from './Views/client-contact/client-contact.component';
+import { WorkingHoursComponent } from './Views/working-hours/working-hours.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -67,6 +68,11 @@ const routes: Routes = [
   {
     path: 'employees-list',
     component: EmployeesListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'working-hours',
+    component: WorkingHoursComponent,
     canActivate: [AuthGuard],
   },
   { path: 'employee/:id', component: EmployeeComponent },

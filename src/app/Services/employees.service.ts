@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
 import { Observable } from 'rxjs';
 import { ReqResponseEmployees } from '../Models/reqResponse';
+import { I_Employee } from '../Models/employee';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ export class EmployeesService {
   endPoint: string = '/api/employees';
   token: string;
   employeesPerPage = 5;
+  nameEmployee: string = 'Nombre Employee';
 
   constructor(
     private httpClient: HttpClient,
@@ -49,6 +51,17 @@ export class EmployeesService {
     return this.httpClient.get(`${this.url}${this.endPoint}/${id}`, {
       headers,
     });
+  }
+  searchTerm(id: string): Observable<I_Employee> {
+    const headers = new HttpHeaders({
+      Authorization: this.token,
+    });
+    return this.httpClient.get<I_Employee>(
+      `${this.url}${this.endPoint}/${id}`,
+      {
+        headers,
+      }
+    );
   }
 
   updateEmployee(employee) {

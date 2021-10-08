@@ -1,8 +1,13 @@
 import { I_Employee } from './../../../Models/employee';
-import { Component, OnInit } from '@angular/core';
-import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  faTrashAlt,
+  faEdit,
+  faCalendarAlt,
+} from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { EmployeesService } from '../../../Services/employees.service';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-employees-list',
@@ -13,11 +18,17 @@ export class EmployeesListComponent implements OnInit {
   //Icons
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
+  faCalendarAlt = faCalendarAlt;
+  faSort = faSort;
   employees: any[];
   currentPage: number;
   totalPages: number;
   pageToGo: number;
   pagesArray: Array<number>;
+  order: string = '';
+  name: string = '';
+  errorAPI: boolean = false;
+  out_date: boolean = false;
 
   constructor(
     private employeesService: EmployeesService,
@@ -29,17 +40,21 @@ export class EmployeesListComponent implements OnInit {
   ngOnInit(): void {
     this.goToPage(this.currentPage);
 
-    /*this.employeesService.getAllEmployees().subscribe(resp=>{
+    this.employeesService.getAllEmployees().subscribe((resp) => {
       this.employees = resp.employees;
-      console.log(resp.employees);
-    });*/
+      // console.log('resp', resp.employees);
+    });
   }
 
   //Función para que se abra la página de single Employee
   goEditEmployee(id: string) {
     this.router.navigate(['/employee', id]);
   }
-
+  //Funcion para que se abr la página Working-hours
+  goWorkingHours() {
+    this.name = 'Jane Doe';
+    this.router.navigateByUrl('working-hours');
+  }
   isLastPage() {
     return this.currentPage == this.totalPages;
   }
@@ -81,6 +96,7 @@ export class EmployeesListComponent implements OnInit {
       (err) => {
         console.log(err);
       };
+
     /*this.employeesService.getAllEmployees()
       .subscribe((data: any) => {
 
@@ -135,8 +151,31 @@ export class EmployeesListComponent implements OnInit {
   }
   delete(i: number) {
     const id = this.employees[i].id;
-
     this.employeesService.deleteEmployee(id).subscribe();
     this.employees.splice(i, 1);
+  }
+  //Función para Buscar Empleado por Id // aquí añado un pipe.map para devolver otro array
+  search() {
+    this.errorAPI = false;
+    this.employeesService.searchTerm(this.name).subscribe(
+      (resp: any) => {
+        this.employees = resp.employee;
+        for (let i = 0; i > resp.employee; i++) {
+          console.log('resp', resp.employees[i].name);
+        }
+      },
+      (err) => {
+        this.errorAPI = true;
+        this.employees = [];
+        console.log(err);
+      }
+    );
+  }
+
+  //Funcion para ordenar la lista
+
+  orderBy(valor: string) {
+    this.order = valor;
+    console.log(valor);
   }
 }
