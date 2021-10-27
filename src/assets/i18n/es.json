@@ -362,6 +362,28 @@
       "contact-terms-missing": "Los términos y condiciones deben ser aceptados"
     }
   },
+<<<<<<< Updated upstream
+=======
+  "Offers":{
+    "page-head": "Lista de Ofertas",
+    "delete": "Eliminar",
+    "update": "Actualizar",
+    "id": "Id Oferta",
+    "discount": "Descuento",
+    "paid_quantity": "Cantidad Pagada",
+    "free_quantity": "Cantidad Libre",
+    "start_date": "Fecha Inicio",
+    "end_date": "Fecha Fin",
+    "description": "Descripción Promoción",
+    "new_offer": "Crear Nueva Oferta",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "search": "Escribe para buscar",
+    "back-to-offers-list": "Volver a la lista",
+    "offer-detail": "Detalle de la oferta",
+    "create": "Crear"
+  },
+>>>>>>> Stashed changes
   "terms": {
     "text-1":"Un acuerdo de Condiciones Generales recoge las condiciones que los visitantes deben aceptar si desean interactuar con el sitio web. Básicamente, si el visitante sigue utilizando el sitio web después de aceptar las Condiciones Generales, estará suscribiendo un contrato con usted.",
     "text-2": "A diferencia de las Políticas de Privacidad, no está legalmente obligado a tener un acuerdo de Condiciones Generales. Sin embargo, existen muchos motivos por los que debería redactar uno y publicarlo en su sitio web."

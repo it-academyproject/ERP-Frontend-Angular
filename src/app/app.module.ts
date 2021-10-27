@@ -63,6 +63,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { OffersComponent } from './Views/Offers/offers/offers.component';
 import { CartItemComponent } from './Components/header/shopping-cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './Views/Product/products-without-session/product-item/product-item.component';
+<<<<<<< Updated upstream
+=======
+import { OfferDetailComponent } from './Views/Offers/offer-detail/offer-detail.component';
+import { NewOfferComponent } from './Views/Offers/new-offer/new-offer.component';
+>>>>>>> Stashed changes
 
 
 registerLocaleData(localeESP);
@@ -104,7 +109,15 @@ registerLocaleData(localeESP);
     ProfileComponent,
     CartItemComponent,
     ProductItemComponent,
+<<<<<<< Updated upstream
     TermsComponent
+=======
+    TermsComponent,
+    OfferDetailComponent,
+    SingleProductWithoutSessionComponent,
+    TermsComponent,
+    NewOfferComponent
+>>>>>>> Stashed changes
   ],
 
   imports: [

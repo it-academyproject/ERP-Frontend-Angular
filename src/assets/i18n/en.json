@@ -330,6 +330,28 @@
       "contact-terms-missing": "Terms and conditions must be accepted"
     }
   },
+<<<<<<< Updated upstream
+=======
+  "Offers":{
+    "page-head": "Offers List",
+    "delete": "Delete",
+    "update": "Update",
+    "id": "Offer Id",
+    "discount": "Discount",
+    "paid_quantity": "Paid Quantity",
+    "free_quantity": "Free Quantity",
+    "start_date": "Start on Date",
+    "end_date": "Ends on Date",
+    "description": "Promotion Description",
+    "new_offer": "Create New Offer",
+    "previous": "Previous",
+    "next": "Next",
+    "search": "Type to search",
+    "back-to-offers-list": "Back to list",
+    "offer-detail": "Offer details",
+    "create": "Create"
+  },
+>>>>>>> Stashed changes
   "terms": {
     "text-1":"A General Conditions agreement sets out the conditions that visitors must accept if they wish to interact with the website. Basically, if the visitor continues to use the website after accepting the General Conditions, she will be signing a contract with you.",
     "text-2": "Unlike the Privacy Policies, you are not legally obliged to have a General Conditions agreement. However, there are many reasons why you should write one and post it on your website."

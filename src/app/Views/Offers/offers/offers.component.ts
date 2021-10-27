@@ -95,4 +95,15 @@ export class OffersComponent implements OnInit {
 
   }
 
+<<<<<<< Updated upstream
+=======
+  goShowOffer(id: number){
+    this.router.navigate(['/offer-detail', id]);
+  }
+
+  goNewOffer(){
+    this.router.navigate(['/new-offer']);
+  }
+
+>>>>>>> Stashed changes
 }

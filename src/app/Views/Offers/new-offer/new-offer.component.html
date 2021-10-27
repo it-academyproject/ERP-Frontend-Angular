@@ -1,0 +1,152 @@
+
+<div class="container">
+    <div class="row py-5">
+      <div class="col-sm-12 d-flex justify-content-end">
+        <a [routerLink]="['/offers']">{{ 'Offers.back-to-offers-list' | translate}}</a>
+      </div>
+      <h4 class="text-center pb-5">{{ 'Offers.new_offer' | translate}}</h4>
+    </div>
+    <div class="row">
+        <form method="post" role="form" class="php-email-form row" autocomplete="off"
+            [formGroup]='form'>
+            <!-- Description -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="description" class="col-form-label">{{ 'Offers.description' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="description"
+                            name="description"
+                            type="text"
+                            class="form-control"
+                            autocomplete="off"
+                            formControlName="description"
+                            [class.is-invalid]="isDescriptionInvalid"
+                            autofocus />
+                        <div *ngIf="isDescriptionInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Date -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="start_date" class="col-form-label">{{ 'Offers.start_date' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="start_date"
+                            name="start_date"
+                            type="text"
+                            class="form-control"
+                            autocomplete="off"
+                            formControlName="start_date"
+                            [class.is-invalid]="isStartDateInvalid"
+                            autofocus/>
+                        <div *ngIf="isStartDateInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Discount -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="discount" class="col-form-label">{{ 'Offers.discount' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="discount"
+                            name="discount"
+                            type="text"
+                            class="form-control"
+                            autocomplete="off"
+                            formControlName="discount"
+                            [class.is-invalid]="isDiscountInvalid"
+                            autofocus />
+                        <div *ngIf="isDiscountInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Date -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="end_date" class="col-form-label">{{ 'Offers.end_date' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="end_date"
+                            name="end_date"
+                            type="ptdate"
+                            class="form-control"
+                            autocomplete="off"
+                            formControlName="end_date"
+                            [class.is-invalid]="isEndDateInvalid"
+                            autofocus/>
+                        <div *ngIf="isEndDateInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Paid Quantity -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="paid_quantity" class="col-form-label">{{ 'Offers.paid_quantity' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="paid_quantity"
+                                name="paid_quantity"
+                                type="text"
+                                class="form-control"
+                                autocomplete="off"
+                                formControlName="paid_quantity"
+                                [class.is-invalid]="isPaidQuantityInvalid"
+                                autofocus />
+                        <div *ngIf="isPaidQuantityInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Free Quantity -->
+            <div class="col-6 form-group"> 
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="free_quantity" class="col-form-label">{{ 'Offers.free_quantity' | translate}}:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="free_quantity"
+                                name="free_quantity"
+                                type="text"
+                                class="form-control"
+                                autocomplete="off"
+                                formControlName="free_quantity"
+                                [class.is-invalid]="isFreeQuantityInvalid"
+                                autofocus />
+                        <div *ngIf="isFreeQuantityInvalid" class="invalid-feedback">{{ 'Validation.required-field' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--SERVER RESPONSE ALERT (copied from login page) -->
+            <div *ngIf="showAlert"
+                class="mb-3 mx-auto text-center border rounded-3"
+                [ngClass]="{
+                    'border-erp-darkgreen': success,
+                    'text-erp-darkgreen': success,
+                    'bg-erp-palegreen': success,
+                    'border-erp-firebrick ': !success,
+                    'text-erp-firebrick ': !success,
+                    'bg-erp-pink': !success
+                    }">
+                <small>{{ alertMessage }}</small>
+            </div>
+            <!--Buttons-->
+            <div class="row py-2">
+                <div class="col-7 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-erp-blue text-erp-white me-3" (click)="submit()">
+                        {{ 'Offers.create' | translate}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

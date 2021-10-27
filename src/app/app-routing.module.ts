@@ -35,6 +35,7 @@ import { EmployeeComponent } from './Views/employees/employee/employee.component
 // Stats import
 import { StatsComponent } from './Views/stats/stats.component';
 import { ClientContactComponent } from './Views/client-contact/client-contact.component';
+import { NewOfferComponent } from './Views/Offers/new-offer/new-offer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -68,6 +69,12 @@ const routes: Routes = [
   },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'offers', component: OffersComponent, canActivate: [AuthGuard]},
+<<<<<<< Updated upstream
+=======
+  { path: 'offer-detail/:id', component: OfferDetailComponent },
+  { path: 'new-offer', component: NewOfferComponent },
+
+>>>>>>> Stashed changes
   {
     path: 'employees-list',
     component: EmployeesListComponent,
