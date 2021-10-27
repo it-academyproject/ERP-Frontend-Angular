@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   mode: 'Dev Mode!',
+  base_url: 'http://217.76.158.200:8080/api'
 };
 
 /*

@@ -13,7 +13,7 @@ import { updateClient } from '../Models/updateClient';
 })
 export class ClientsService {
   url: string = 'http://217.76.158.200:8080';
-  endPoint: string = '/api/clients';
+  endPoint: string = '/api/clients/users/:id';
   token: string;
   clientsPerPage: number = 5;
   newClient: Clients
